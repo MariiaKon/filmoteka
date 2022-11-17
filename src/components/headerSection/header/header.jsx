@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import Navigation from '../navigation/nav';
 import Searchbar from '../searchbar/searchbar';
-import Error from '../error/error';
+// import Error from '../error/error';
 import LibraryBtns from '../buttonbar/buttonbar';
 import { HeadHome, HeadLibrary, Container } from './header.styled';
 

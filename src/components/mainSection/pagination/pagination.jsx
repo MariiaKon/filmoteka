@@ -1,6 +1,6 @@
 import { ReactComponent as ArrowLeft } from './icons/arrow_left.svg';
 import { ReactComponent as ArrowRight } from './icons/arrow_right.svg';
-import { ReactComponent as Elipsis } from './icons/elipsis.svg';
+// import { ReactComponent as Elipsis } from './icons/elipsis.svg';
 import {
   Pagination,
   NavBtn,
