@@ -1,24 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+const Layout = lazy(() => import('views/layout/layout'));
+const HomeView = lazy(() => import('views/homeView/homeView'));
+const WatchedView = lazy(() => import('views/library/watchedView/watchedView'));
+const QueueView = lazy(() => import('views/library/queueView/queueView'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter basename="/filmoteka">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<div>LOADING</div>}>
+                <Layout />
+              </Suspense>
+            }
+          >
+            <Route
+              exact
+              path="/"
+              element={
+                <Suspense fallback={<div>LOADING</div>}>
+                  <HomeView />
+                </Suspense>
+              }
+            />
+            <Route
+              path="library/watched"
+              element={
+                <Suspense fallback={<div>LOADING</div>}>
+                  <WatchedView />
+                </Suspense>
+              }
+            />
+            <Route
+              path="library/queue"
+              element={
+                <Suspense fallback={<div>LOADING</div>}>
+                  <QueueView />
+                </Suspense>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
