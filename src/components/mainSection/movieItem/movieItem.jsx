@@ -15,7 +15,7 @@ function MovieItem({ movies }) {
                 src={
                   movie.poster_path
                     ? `${base_url}${file_size}${movie.poster_path}`
-                    : `${process.env.PUBLIC_URL + 'no_poster.jpg'}`
+                    : `${process.env.PUBLIC_URL + '/no_poster.jpg'}`
                 }
                 alt={movie.title}
               />
