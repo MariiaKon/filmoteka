@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkapp=self.webpackChunkapp||[]).push([[701],{8701:function(e,n,u){u.r(n);var p=u(184);n.default=function(){return(0,p.jsx)("div",{children:" QUEUE "})}}}]);
+//# sourceMappingURL=701.cdbeb905.chunk.js.map
