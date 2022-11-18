@@ -25,8 +25,7 @@ export const Page = styled.li`
 
 export const PageBtn = styled(Btn)`
   color: ${varsCss.textColor};
-  transition: ${varsCss.transition};
-
+  
   :focus,
   :hover {
     color: ${varsCss.primaryColor};

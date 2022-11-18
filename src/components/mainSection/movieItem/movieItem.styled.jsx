@@ -19,6 +19,7 @@ export const Poster = styled.img`
   width: 280px;
   height: 402px;
   border-radius: 5px;
+  margin-bottom: 10px;
 
   @media screen and (min-width: 768px) {
     width: 294px;
@@ -31,7 +32,6 @@ export const Poster = styled.img`
 `;
 
 export const Title = styled.h2`
-  margin-top: 10px;
   line-height: 16px;
   text-transform: uppercase;
   white-space: nowrap;
@@ -46,12 +46,18 @@ export const Info = styled.div`
 `;
 
 export const Release = styled.span`
+  position: relative;
   line-height: 16px;
+  margin-left: 8px;
 
   ::before {
+    position: absolute;
     display: inline-block;
-    content: '|';
-    margin-left: 2px;
-    margin-right: 2px;
+    content: '';
+    height: 12px;
+    width: 1px;
+    background: ${varsCss.textAccentColor};
+    top: 2px;
+    left: -4px;
   }
 `;

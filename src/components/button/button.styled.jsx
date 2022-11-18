@@ -12,4 +12,6 @@ export const Btn = styled.button`
   border-radius: 5px;
   border: 1px solid;
   border-color: ${varsCss.primaryColor};
+  text-transform: uppercase;
+  transition: ${varsCss.transition};
 `;
