@@ -9,11 +9,13 @@ function MovieList({ query }) {
 
   return (
     <List>
-      {query === '' ? (
-        <MovieItem movies={trendings} />
-      ) : (
-        <MovieItem movies={movies} />
-      )}
+      {query === ''
+        ? trendings?.map(movie => {
+            return <MovieItem key={movie.id} movie={movie} />;
+          })
+        : movies?.map(movie => {
+            return <MovieItem key={movie.id} movie={movie} />;
+          })}
     </List>
   );
 }
