@@ -93,6 +93,13 @@ export const DescrBox = styled.div`
 `;
 
 export const Descr = styled.ul`
+  display: grid;
+  grid-template-rows:
+    min-content
+    min-content
+    1fr min-content;
+  gap: 10px;
+
   &:first-child {
     color: #8c8c8c;
   }
@@ -101,10 +108,6 @@ export const Descr = styled.ul`
 export const DescrItem = styled.li`
   display: flex;
   line-height: 16px;
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
 `;
 
 export const Genre = styled(GenreList)``;
