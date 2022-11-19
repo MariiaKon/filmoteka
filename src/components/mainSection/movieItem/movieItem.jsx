@@ -1,14 +1,26 @@
+import { useState } from 'react';
+import { base_url, file_size } from 'api/filmotekaApi';
 import Genres from './genres/genres';
+import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
 
-const base_url = 'https://image.tmdb.org/t/p';
-const file_size = '/w300';
-
 function MovieItem({ movie }) {
+  const [movieInfo, setMovieInfo] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+    setMovieInfo(movie);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       {movie && (
-        <Movie>
+        <Movie onClick={openModal}>
           <Poster
             src={
               movie.poster_path
@@ -24,6 +36,14 @@ function MovieItem({ movie }) {
           </Info>
         </Movie>
       )}
+
+      <Modal
+        movie={movieInfo}
+        base_url={base_url}
+        file_size={file_size}
+        isOpen={isOpen}
+        onClick={closeModal}
+      />
     </>
   );
 }
