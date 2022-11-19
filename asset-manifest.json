@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/filmoteka/static/css/main.35b36d97.css",
-    "main.js": "/filmoteka/static/js/main.9b76419d.js",
-    "static/js/129.7b3f54e1.chunk.js": "/filmoteka/static/js/129.7b3f54e1.chunk.js",
-    "static/js/491.6cda031a.chunk.js": "/filmoteka/static/js/491.6cda031a.chunk.js",
+    "main.js": "/filmoteka/static/js/main.b16b0603.js",
+    "static/js/614.85acb54b.chunk.js": "/filmoteka/static/js/614.85acb54b.chunk.js",
+    "static/js/773.492d029a.chunk.js": "/filmoteka/static/js/773.492d029a.chunk.js",
     "static/js/156.73eb82fa.chunk.js": "/filmoteka/static/js/156.73eb82fa.chunk.js",
     "static/js/701.cdbeb905.chunk.js": "/filmoteka/static/js/701.cdbeb905.chunk.js",
     "static/js/787.c1112931.chunk.js": "/filmoteka/static/js/787.c1112931.chunk.js",
@@ -20,10 +20,11 @@
     "index.html": "/filmoteka/index.html",
     "static/media/arrow_left.svg": "/filmoteka/static/media/arrow_left.56396914ac988d114e79cd349744c1d2.svg",
     "static/media/arrow_right.svg": "/filmoteka/static/media/arrow_right.8d03e20426305ad75da84d3e58c16e4d.svg",
+    "static/media/cross.svg": "/filmoteka/static/media/cross.bbb460aebe64669b502e66f164ff95d1.svg",
     "main.35b36d97.css.map": "/filmoteka/static/css/main.35b36d97.css.map",
-    "main.9b76419d.js.map": "/filmoteka/static/js/main.9b76419d.js.map",
-    "129.7b3f54e1.chunk.js.map": "/filmoteka/static/js/129.7b3f54e1.chunk.js.map",
-    "491.6cda031a.chunk.js.map": "/filmoteka/static/js/491.6cda031a.chunk.js.map",
+    "main.b16b0603.js.map": "/filmoteka/static/js/main.b16b0603.js.map",
+    "614.85acb54b.chunk.js.map": "/filmoteka/static/js/614.85acb54b.chunk.js.map",
+    "773.492d029a.chunk.js.map": "/filmoteka/static/js/773.492d029a.chunk.js.map",
     "156.73eb82fa.chunk.js.map": "/filmoteka/static/js/156.73eb82fa.chunk.js.map",
     "701.cdbeb905.chunk.js.map": "/filmoteka/static/js/701.cdbeb905.chunk.js.map",
     "787.c1112931.chunk.js.map": "/filmoteka/static/js/787.c1112931.chunk.js.map",
@@ -32,6 +33,6 @@
   },
   "entrypoints": [
     "static/css/main.35b36d97.css",
-    "static/js/main.9b76419d.js"
+    "static/js/main.b16b0603.js"
   ]
 }
