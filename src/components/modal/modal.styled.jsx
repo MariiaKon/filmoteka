@@ -9,13 +9,13 @@ import {
 import { GenreList } from 'components/mainSection/movieItem/genres/genres.styled';
 
 export const Overlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.25);
-
+  overflow-y: scroll;
   z-index: 1000;
 `;
 
