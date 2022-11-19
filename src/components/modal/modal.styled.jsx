@@ -11,6 +11,7 @@ import { GenreList } from 'components/mainSection/movieItem/genres/genres.styled
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.25);
@@ -68,6 +69,9 @@ export const MoviePoster = styled(Poster)`
 `;
 
 export const MovieTitle = styled(Title)`
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
   font-size: 20px;
   line-height: 20px;
 
