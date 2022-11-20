@@ -35,7 +35,7 @@ export const ModalFrame = styled.div`
     grid-template-columns: repeat(2, 264px);
     gap: 32px;
     width: 618px;
-    margin: 230px auto;
+    margin: 230px auto auto;
     padding: 42px 30px 40px;
   }
 
