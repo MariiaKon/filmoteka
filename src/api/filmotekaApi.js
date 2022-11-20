@@ -14,19 +14,15 @@ const options = {
   },
 };
 
-export const getTrendings = async () => {
-  const response = await axios.get('trending/movie/day', options);
-  return response.data;
-};
-
 export const getGenres = async () => {
   const response = await axios.get('/genre/movie/list', options);
   return response.data;
 };
 
-export const searchMoviesByQuery = async query => {
+export const getMovies = async query => {
   if (query === '') {
-    return null;
+    const response = await axios.get('trending/movie/day', options);
+    return response.data;
   }
 
   options.params.query = query;
