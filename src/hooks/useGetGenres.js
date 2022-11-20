@@ -4,11 +4,15 @@ import { useEffect, useState } from 'react';
 function useGetGenres() {
   const [genres, setGenres] = useState([]);
 
-  useEffect(() => {
-    API.getGenres().then(response => {
-      setGenres(prevState => [...response.genres]);
-    });
-  }, []);
+  try {
+    useEffect(() => {
+      API.getGenres().then(response => {
+        setGenres(prevState => [...response.genres]);
+      });
+    }, []);
+  } catch (error) {
+    console.log(error);
+  }
 
   return genres;
 }
