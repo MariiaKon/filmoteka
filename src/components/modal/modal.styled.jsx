@@ -6,7 +6,6 @@ import {
   Poster,
   Title,
 } from 'components/mainSection/movieItem/movieItem.styled';
-import { GenreList } from 'components/mainSection/movieItem/genres/genres.styled';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -83,7 +82,7 @@ export const MovieTitle = styled(Title)`
 
 export const DescrBox = styled.div`
   display: grid;
-  grid-template-columns: minmax(min-content, max-content) 1fr;
+  grid-template-columns: max-content 1fr;
   gap: 40px;
   margin: 20px auto;
 
@@ -94,10 +93,7 @@ export const DescrBox = styled.div`
 
 export const Descr = styled.ul`
   display: grid;
-  grid-template-rows:
-    min-content
-    min-content
-    1fr min-content;
+  grid-template-rows: repeat(2, max-content) repeat(2, minmax(max-content, 1fr));
   gap: 10px;
 
   &:first-child {
@@ -109,8 +105,6 @@ export const DescrItem = styled.li`
   display: flex;
   line-height: 16px;
 `;
-
-export const Genre = styled(GenreList)``;
 
 export const About = styled.h3`
   text-transform: uppercase;

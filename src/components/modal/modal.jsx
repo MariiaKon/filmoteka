@@ -1,5 +1,8 @@
-// import { useState } from 'react';
+import { useState } from 'react';
+import useModalClose from 'hooks/useModalClose';
+import useCreateLibraryLists from 'hooks/useCreateLibraryLists';
 import { ReactComponent as CrossSvg } from './cross.svg';
+import Genres from 'components/mainSection/movieItem/genres/genres';
 import {
   Overlay,
   ModalFrame,
@@ -9,7 +12,6 @@ import {
   DescrBox,
   Descr,
   DescrItem,
-  Genre,
   About,
   Owerview,
   Buttons,
@@ -17,25 +19,33 @@ import {
 } from './modal.styled';
 
 function Modal({ movie, base_url, file_size, isOpen, onClick }) {
-  // const [watched, setWatched] = useState(false);
-  // const [queue, setQueue] = useState(false);
-  const lists = ['watched', 'queue'];
+  const [watched, setWatched] = useState(false);
+  const [queue, setQueue] = useState(false);
+
+  useModalClose(onClick);
+
+  // const { watchedList } = useCreateLibraryLists(movie, watched, queue);
+  // console.log(watchedList);
 
   const onClickHandler = e => {
-    const cls = e.target.className;
+    switch (e.target.id) {
+      case 'watched':
+        setWatched(prevState => !watched);
+        break;
 
-    cls.split(' ').includes('active')
-      ? (e.target.className = cls
-          .split(' ')
-          .filter(cls => cls !== 'active')
-          .join(' '))
-      : (e.target.className = `${cls} ${'active'}`);
+      case 'queue':
+        setQueue(prevState => !queue);
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (
     <>
       {isOpen && (
-        <Overlay>
+        <Overlay id="overlay">
           <ModalFrame>
             <CloseBtn type="button" onClick={onClick}>
               <CrossSvg />
@@ -63,29 +73,32 @@ function Modal({ movie, base_url, file_size, isOpen, onClick }) {
                       <DescrItem>{`${movie.vote_average} / ${movie.vote_count}`}</DescrItem>
                       <DescrItem>{movie.popularity}</DescrItem>
                       <DescrItem>{movie.original_title}</DescrItem>
-                      <Genre>
-                        {movie.genre_ids.length > 0 ? (
-                          movie.genre_ids.map(id => {
-                            return <li key={id}>{id}</li>;
-                          })
-                        ) : (
-                          <li>Other</li>
-                        )}
-                      </Genre>
+                      <DescrItem>
+                        <Genres ids={movie.genre_ids} />
+                      </DescrItem>
                     </Descr>
                   </DescrBox>
                   <About>About</About>
                   <Owerview>{movie.overview}</Owerview>
                   <Buttons>
-                    {lists.map(list => {
-                      return (
-                        <li key={list}>
-                          <Button type="button" onClick={onClickHandler}>
-                            {`Add to ${list}`}
-                          </Button>
-                        </li>
-                      );
-                    })}
+                    <li>
+                      <Button
+                        id="watched"
+                        type="button"
+                        onClick={onClickHandler}
+                        children={!watched ? ['Add to ', 'watched'] : 'watched'}
+                        className={watched && 'active'}
+                      />
+                    </li>
+                    <li>
+                      <Button
+                        id="queue"
+                        type="button"
+                        onClick={onClickHandler}
+                        children={!queue ? ['Add to ', 'queue'] : 'queue'}
+                        className={queue && 'active'}
+                      />
+                    </li>
                   </Buttons>
                 </div>
               </>
