@@ -83,6 +83,7 @@ function Modal({ movie, isOpen, onClick }) {
                       </DescrItem>
                     </Descr>
                   </DescrBox>
+                  {movie.overview && <About>About</About>}
                   <About>About</About>
                   <Owerview>{movie.overview}</Owerview>
                   <Buttons>
