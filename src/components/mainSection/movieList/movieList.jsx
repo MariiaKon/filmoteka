@@ -9,9 +9,10 @@ function MovieList() {
 
   return (
     <List>
-      {movies.map(movie => {
-        return <MovieItem key={movie.id} movie={movie} />;
-      })}
+      {movies &&
+        movies.map(movie => {
+          return <MovieItem key={movie.id} movie={movie} />;
+        })}
     </List>
   );
 }
