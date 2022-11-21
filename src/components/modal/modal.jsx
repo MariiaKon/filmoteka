@@ -3,6 +3,7 @@ import useModalClose from 'hooks/useModalClose';
 import useCreateLibraryLists from 'hooks/useCreateLibraryLists';
 import { ReactComponent as CrossSvg } from './cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
+import Rating from 'components/mainSection/movieItem/rating/rating';
 import {
   Overlay,
   ModalFrame,
@@ -70,7 +71,10 @@ function Modal({ movie, base_url, file_size, isOpen, onClick }) {
                       <DescrItem>Genre:</DescrItem>
                     </Descr>
                     <Descr>
-                      <DescrItem>{`${movie.vote_average} / ${movie.vote_count}`}</DescrItem>
+                      <DescrItem>
+                        <Rating rating={movie.vote_average} />
+                        {`/ ${movie.vote_count}`}
+                      </DescrItem>
                       <DescrItem>{movie.popularity}</DescrItem>
                       <DescrItem>{movie.original_title}</DescrItem>
                       <DescrItem>

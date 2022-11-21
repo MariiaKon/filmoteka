@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { base_url, file_size } from 'api/filmotekaApi';
 import Genres from './genres/genres';
+import Rating from './rating/rating';
 import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
+import { useLocation } from 'react-router-dom';
 
 function MovieItem({ movie }) {
   const [movieInfo, setMovieInfo] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const openModal = () => {
     setIsOpen(true);
@@ -33,6 +36,13 @@ function MovieItem({ movie }) {
           <Info>
             <Genres ids={movie.genre_ids} />
             {movie.release_date && <Release>{movie.release_date}</Release>}
+            {location.pathname.includes('library') ? (
+              <Rating rating={movie.vote_average} />
+            ) : location.search !== '' ? (
+              <Rating rating={movie.vote_average} />
+            ) : (
+              false
+            )}
           </Info>
         </Movie>
       )}

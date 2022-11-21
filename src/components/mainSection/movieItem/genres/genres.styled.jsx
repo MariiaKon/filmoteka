@@ -15,5 +15,6 @@ export const GenreItem = styled.li`
 
   &:last-child::after {
     content: '';
+    margin-right: 0;
   }
 `;

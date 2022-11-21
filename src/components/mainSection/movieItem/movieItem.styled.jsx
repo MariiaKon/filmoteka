@@ -49,6 +49,7 @@ export const Release = styled.span`
   position: relative;
   line-height: 16px;
   margin-left: 8px;
+  margin-right: 6px;
 
   ::before {
     position: absolute;
