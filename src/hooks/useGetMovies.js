@@ -15,16 +15,14 @@ function useGetMovies(query) {
         const results = response.results.map(movie => {
           return {
             ...movie,
-            // genre_ids: movie.genre_ids.slice(0, 2),
             release_date: movie.release_date.slice(0, 4),
+            vote_average: movie.vote_average.toFixed(1),
           };
         });
         setMovies(prevState => [...results]);
       });
     }, [query]);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return movies;
 }

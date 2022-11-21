@@ -10,9 +10,7 @@ function useGetGenres() {
         setGenres(prevState => [...response.genres]);
       });
     }, []);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return genres;
 }

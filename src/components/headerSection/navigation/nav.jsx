@@ -14,9 +14,7 @@ function Navigation() {
         <Navlink to="/">Home</Navlink>
         <Navlink
           to="/library/watched"
-          className={
-            location.pathname.includes('library') ? 'active' : undefined
-          }
+          className={location.pathname.includes('library') && 'active'}
         >
           Library
         </Navlink>
