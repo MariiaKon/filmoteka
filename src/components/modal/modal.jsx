@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import useModalClose from 'hooks/useModalClose';
+import { base_url, file_size_modal } from 'api/filmotekaApi';
 import useCreateLibraryLists from 'hooks/useCreateLibraryLists';
 import { ReactComponent as CrossSvg } from './cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
@@ -19,7 +20,7 @@ import {
   Button,
 } from './modal.styled';
 
-function Modal({ movie, base_url, file_size, isOpen, onClick }) {
+function Modal({ movie, isOpen, onClick }) {
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
 
@@ -56,8 +57,8 @@ function Modal({ movie, base_url, file_size, isOpen, onClick }) {
                 <MoviePoster
                   src={
                     movie.poster_path
-                      ? `${base_url}${file_size}${movie.poster_path}`
-                      : `${process.env.PUBLIC_URL + '/no_poster.jpg'}`
+                      ? `${base_url}${file_size_modal}${movie.poster_path}`
+                      : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
                   }
                   alt={movie.title}
                 />

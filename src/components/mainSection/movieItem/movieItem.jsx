@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { base_url, file_size } from 'api/filmotekaApi';
 import Genres from './genres/genres';
 import Rating from './rating/rating';
 import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
-import { useLocation } from 'react-router-dom';
 
 function MovieItem({ movie }) {
   const [movieInfo, setMovieInfo] = useState(null);
@@ -28,9 +28,10 @@ function MovieItem({ movie }) {
             src={
               movie.poster_path
                 ? `${base_url}${file_size}${movie.poster_path}`
-                : `${process.env.PUBLIC_URL + '/no_poster.jpg'}`
+                : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
             }
             alt={movie.title}
+            loading="lazy"
           />
           <Title>{movie.title}</Title>
           <Info>
@@ -47,13 +48,7 @@ function MovieItem({ movie }) {
         </Movie>
       )}
 
-      <Modal
-        movie={movieInfo}
-        base_url={base_url}
-        file_size={file_size}
-        isOpen={isOpen}
-        onClick={closeModal}
-      />
+      <Modal movie={movieInfo} isOpen={isOpen} onClick={closeModal} />
     </>
   );
 }
