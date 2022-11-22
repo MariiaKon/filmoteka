@@ -48,8 +48,7 @@ export const Info = styled.div`
 export const Release = styled.span`
   position: relative;
   line-height: 16px;
-  margin-left: 8px;
-  margin-right: 6px;
+  margin-right: 10px;
 
   ::before {
     position: absolute;
@@ -59,6 +58,6 @@ export const Release = styled.span`
     width: 1px;
     background: ${varsCss.textAccentColor};
     top: 2px;
-    left: -4px;
+    left: -6px;
   }
 `;

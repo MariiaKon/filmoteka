@@ -79,7 +79,7 @@ function Modal({ movie, isOpen, onClick }) {
                       <DescrItem>{movie.popularity}</DescrItem>
                       <DescrItem>{movie.original_title}</DescrItem>
                       <DescrItem>
-                        <Genres ids={movie.genre_ids} />
+                        <Genres ids={movie.genre_ids} isOpen={isOpen} />
                       </DescrItem>
                     </Descr>
                   </DescrBox>

@@ -35,7 +35,7 @@ function MovieItem({ movie }) {
           />
           <Title>{movie.title}</Title>
           <Info>
-            <Genres ids={movie.genre_ids} />
+            <Genres ids={movie.genre_ids} isOpen={isOpen} />
             {movie.release_date && <Release>{movie.release_date}</Release>}
             {location.pathname.includes('library') ? (
               <Rating rating={movie.vote_average} />
