@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react';
 
 function useGetMovies(query) {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
 
   try {
     useEffect(() => {
       API.getMovies(query).then(response => {
         if (response === null || response.results.length === 0) {
+          setError(true);
           setMovies(null);
           return;
         }
@@ -21,12 +23,13 @@ function useGetMovies(query) {
             vote_average: movie.vote_average.toFixed(1),
           };
         });
+        setError(false);
         setMovies(prevState => [...results]);
       });
     }, [query]);
   } catch (error) {}
 
-  return movies;
+  return { movies, error };
 }
 
 export default useGetMovies;

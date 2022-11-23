@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { BsChevronUp } from 'react-icons/bs';
 import useGetGenres from 'hooks/useGetGenres';
+import useGetMovies from 'hooks/useGetMovies';
+
 import Header from 'components/headerSection/header/header';
 import Main from 'components/mainSection/main/main';
 import Footer from 'components/footerSection/footer';
@@ -11,6 +13,7 @@ function Layout() {
   const [query, setQuery] = useState('');
   const [showUp, setShowUp] = useState(false);
   const genres = useGetGenres();
+  const { error, movies } = useGetMovies(query);
 
   const onSubmit = keyword => {
     if (keyword === query) {
@@ -40,9 +43,9 @@ function Layout() {
 
   return (
     <>
-      <Header onSubmit={onSubmit} />
+      <Header onSubmit={onSubmit} error={error} />
       <Main>
-        <Outlet context={{ query, genres }} />
+        <Outlet context={{ query, genres, movies, error }} />
 
         {showUp && (
           <Button type="button" onClick={onClick} className={'up'}>
