@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Portal from '@mui/base/Portal';
 import { base_url, file_size } from 'api/filmotekaApi';
 import Genres from './genres/genres';
 import Rating from './rating/rating';
@@ -50,7 +51,12 @@ function MovieItem({ movie }) {
         </Movie>
       )}
 
-      <Modal movie={movieInfo} isOpen={isOpen} onClick={closeModal} />
+      <Portal
+        children={
+          <Modal movie={movieInfo} isOpen={isOpen} onClick={closeModal} />
+        }
+        container={document.getElementById('modal-root')}
+      />
     </>
   );
 }
