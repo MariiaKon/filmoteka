@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import { BsChevronUp } from 'react-icons/bs';
+import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
 import useGetGenres from 'hooks/useGetGenres';
 import useGetMovies from 'hooks/useGetMovies';
 
@@ -49,9 +49,7 @@ function Layout() {
 
         {showUp && (
           <Button type="button" onClick={onClick} className={'up'}>
-            <BsChevronUp
-              style={{ height: '2em', width: '2em', strokeWidth: '1px' }}
-            />
+            <ArrowUp />
           </Button>
         )}
       </Main>
