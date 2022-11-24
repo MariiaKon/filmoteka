@@ -22,7 +22,7 @@ function Genres({ ids, isOpen }) {
 
   return (
     <GenreList>
-      {croppedIds && croppedIds.length > 0 ? (
+      {croppedIds?.length > 0 ? (
         croppedIds.map(genre => {
           return <GenreItem key={genre.id}>{genre.name}</GenreItem>;
         })
