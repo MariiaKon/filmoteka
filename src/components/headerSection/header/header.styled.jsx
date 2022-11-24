@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import bg_home_mob from './bg_images/bg_header_home_mob.png';
-import bg_lib_mob from './bg_images/bg_header_library_mob.png';
-import bg_home_tablet from './bg_images/bg_header_home_tablet.png';
-import bg_lib_tablet from './bg_images/bg_header_library_tablet.png';
-import bg_home_desktop from './bg_images/bg_header_home_desktop.png';
-import bg_lib_desktop from './bg_images/bg_header_library_desktop.png';
+import bg_home_mob from './bg_images/bg_header_home_mob.webp';
+import bg_lib_mob from './bg_images/bg_header_library_mob.webp';
+import bg_home_tablet from './bg_images/bg_header_home_tablet.webp';
+import bg_lib_tablet from './bg_images/bg_header_library_tablet.webp';
+import bg_home_desktop from './bg_images/bg_header_home_desktop.webp';
+import bg_lib_desktop from './bg_images/bg_header_library_desktop.webp';
 
 export const HeadHome = styled.header`
   min-height: 230px;
