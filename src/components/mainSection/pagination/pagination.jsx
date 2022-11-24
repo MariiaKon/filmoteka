@@ -1,6 +1,6 @@
-import { ReactComponent as ArrowLeft } from './icons/arrow_left.svg';
-import { ReactComponent as ArrowRight } from './icons/arrow_right.svg';
-// import { ReactComponent as Elipsis } from './icons/elipsis.svg';
+import { ReactComponent as ArrowLeft } from 'icons/arrow_left.svg';
+import { ReactComponent as ArrowRight } from 'icons/arrow_right.svg';
+// import { ReactComponent as Elipsis } from 'icons/elipsis.svg';
 import {
   Pagination,
   NavBtn,
@@ -9,14 +9,15 @@ import {
   PageBtn,
 } from './pagination.styled';
 
-function Pages() {
+function Pages({ pages }) {
+  console.log(pages);
   return (
     <Pagination>
       <NavBtn>
         <ArrowLeft />
       </NavBtn>
       <PagesQty>
-        <Page>
+        {/* <Page>
           <PageBtn>1</PageBtn>
         </Page>
         <Page>
@@ -30,7 +31,7 @@ function Pages() {
         </Page>
         <Page>
           <PageBtn>5</PageBtn>
-        </Page>
+        </Page> */}
       </PagesQty>
       <NavBtn>
         <ArrowRight />

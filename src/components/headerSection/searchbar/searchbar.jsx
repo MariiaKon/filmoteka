@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ReactComponent as SearchSvg } from './search.svg';
+import { ReactComponent as SearchSvg } from 'icons/search.svg';
 import { Form, Input, SubmitBtn } from './searchbar.styled';
 
 function Searchbar({ onSubmit }) {

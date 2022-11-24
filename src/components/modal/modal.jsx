@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useModalClose from 'hooks/useModalClose';
 import { base_url, file_size_modal } from 'api/filmotekaApi';
 // import useCreateLibraryLists from 'hooks/useCreateLibraryLists';
-import { ReactComponent as CrossSvg } from './cross.svg';
+import { ReactComponent as CrossSvg } from 'icons/cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
 import Rating from 'components/mainSection/movieItem/rating/rating';
 import {

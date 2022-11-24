@@ -1,4 +1,4 @@
-import { ReactComponent as LogoSvg } from './logo.svg';
+import { ReactComponent as LogoSvg } from 'icons/logo.svg';
 import { LogoTitle, Navlink } from './logo.styled';
 
 function Logo() {
