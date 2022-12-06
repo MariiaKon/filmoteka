@@ -7,7 +7,7 @@ function Searchbar({ onSubmit }) {
   const [query, setQuery] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-  const regex = new RegExp('[a-z0-9*]+$');
+  const regex = new RegExp('=([a-zA-Z0-9]*)&');
   const queryStr = regex.exec(location.search);
 
   const searchMovies = e => {
@@ -35,7 +35,7 @@ function Searchbar({ onSubmit }) {
       return;
     }
 
-    setQuery(queryStr[0]);
+    setQuery(queryStr[1]);
   }, [queryStr, location.search]);
 
   return (
