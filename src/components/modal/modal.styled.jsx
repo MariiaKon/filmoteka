@@ -102,7 +102,6 @@ export const Descr = styled.ul`
 `;
 
 export const DescrItem = styled.li`
-  display: flex;
   line-height: 16px;
 `;
 
