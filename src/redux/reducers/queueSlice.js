@@ -4,10 +4,13 @@ export const queueSlice = createSlice({
   name: 'queueList',
   initialState: [],
   reducers: {
-    addQueueList: (state, action) => {
+    addToQueueList: (state, action) => {
       return [...state, action.payload];
+    },
+    removeFromQueueList: (state, action) => {
+      return state.filter(movie => movie.id !== action.payload);
     },
   },
 });
 
-export const { addQueueList } = queueSlice.actions;
+export const { addToQueueList, removeFromQueueList } = queueSlice.actions;

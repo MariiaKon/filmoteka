@@ -1,6 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useModalClose from 'hooks/useModalClose';
 import { base_url, file_size_modal } from 'api/filmotekaApi';
+import {
+  addToWatchedList,
+  removeFromWatchedList,
+} from 'redux/reducers/watchedSlice';
+import { addToQueueList, removeFromQueueList } from 'redux/reducers/queueSlice';
 import { ReactComponent as CrossSvg } from 'icons/cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
 import Rating from 'components/mainSection/movieItem/rating/rating';
@@ -20,6 +26,7 @@ import {
 } from './modal.styled';
 
 function Modal({ movie, isOpen, onClick }) {
+  const dispatch = useDispatch();
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
 
@@ -29,10 +36,16 @@ function Modal({ movie, isOpen, onClick }) {
     switch (e.target.id) {
       case 'watched':
         setWatched(prevState => !watched);
+        !watched
+          ? dispatch(addToWatchedList(movie))
+          : dispatch(removeFromWatchedList(movie.id));
         break;
 
       case 'queue':
         setQueue(prevState => !queue);
+        !queue
+          ? dispatch(addToQueueList(movie))
+          : dispatch(removeFromQueueList(movie.id));
         break;
 
       default:

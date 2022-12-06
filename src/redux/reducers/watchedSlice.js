@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const watchedSlice = createSlice({
-  name: 'queueList',
+  name: 'watchedList',
   initialState: [],
   reducers: {
-    addWatchedList: (state, action) => {
+    addToWatchedList: (state, action) => {
       return [...state, action.payload];
+    },
+    removeFromWatchedList: (state, action) => {
+      return state.filter(movie => movie.id !== action.payload);
     },
   },
 });
 
-export const { addWatchedList } = watchedSlice.actions;
+export const { addToWatchedList, removeFromWatchedList } = watchedSlice.actions;
