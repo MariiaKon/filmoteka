@@ -1,56 +1,37 @@
+import { useOutletContext } from 'react-router-dom';
 import { ReactComponent as ArrowLeft } from 'icons/arrow_left.svg';
 import { ReactComponent as ArrowRight } from 'icons/arrow_right.svg';
-// import { ReactComponent as Elipsis } from 'icons/elipsis.svg';
-import {
-  Pagination,
-  NavBtn,
-  PagesQty,
-  Page,
-  PageBtn,
-} from './pagination.styled';
+import { ReactComponent as Elipsis } from 'icons/elipsis.svg';
+import { Pagination } from './pagination.styled';
 
-function Pages({ pages }) {
-  console.log(pages);
+function Pages({ totalResults, perPage }) {
+  const { onPageClick, page } = useOutletContext();
+  const totalPages = Math.ceil(totalResults / perPage);
+
+  const handleClick = e => {
+    onPageClick(e.selected + 1);
+  };
+
   return (
-    <Pagination>
-      <NavBtn>
-        <ArrowLeft />
-      </NavBtn>
-      <PagesQty>
-        {/* <Page>
-          <PageBtn>1</PageBtn>
-        </Page>
-        <Page>
-          <PageBtn>2</PageBtn>
-        </Page>
-        <Page>
-          <PageBtn>3</PageBtn>
-        </Page>
-        <Page>
-          <PageBtn>4</PageBtn>
-        </Page>
-        <Page>
-          <PageBtn>5</PageBtn>
-        </Page> */}
-      </PagesQty>
-      <NavBtn>
-        <ArrowRight />
-      </NavBtn>
-    </Pagination>
+    totalPages && (
+      <Pagination
+        pageCount={totalPages}
+        previousLabel={<ArrowLeft />}
+        nextLabel={<ArrowRight />}
+        breakLabel={<Elipsis />}
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={5}
+        breakLinkClassName={'ellipsis'}
+        pageLinkClassName={'link'}
+        activeLinkClassName={'current'}
+        previousLinkClassName={'arrows'}
+        nextLinkClassName={'arrows'}
+        disabledLinkClassName={'disabled'}
+        onPageChange={handleClick}
+        forcePage={page - 1}
+      />
+    )
   );
-
-  // <Pagination
-  //   total={1000}
-  //   pageSize={20}
-  //   totalBoundaryShowSizeChanger={5}
-  //   hideOnSinglePage={true}
-  //   showTitle={false}
-  //   style={style}
-  //   prevIcon={<ArrowLeft />}
-  //   nextIcon={<ArrowRight />}
-  //   jumpPrevIcon={<Elipsis />}
-  //   jumpNextIcon={<Elipsis />}
-  // />
 }
 
 export default Pages;

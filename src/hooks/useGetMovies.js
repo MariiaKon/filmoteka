@@ -1,13 +1,14 @@
 import * as API from 'api/filmotekaApi';
 import { useEffect, useState } from 'react';
 
-function useGetMovies(query) {
+function useGetMovies(query, page) {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
+  const [totalResults, setTotalResults] = useState(0);
 
   try {
     useEffect(() => {
-      API.getMovies(query).then(response => {
+      API.getMovies(query, page).then(response => {
         if (response === null || response.results.length === 0) {
           setError(true);
           setMovies(null);
@@ -25,11 +26,12 @@ function useGetMovies(query) {
         });
         setError(false);
         setMovies(prevState => [...results]);
+        setTotalResults(response.total_results);
       });
-    }, [query]);
+    }, [query, page]);
   } catch (error) {}
 
-  return { movies, error };
+  return { movies, error, totalResults };
 }
 
 export default useGetMovies;

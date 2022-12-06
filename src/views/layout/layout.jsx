@@ -11,17 +11,10 @@ import { Button } from './layout.styled';
 
 function Layout() {
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
   const [showUp, setShowUp] = useState(false);
   const genres = useGetGenres();
-  const { error, movies } = useGetMovies(query);
-
-  const onSubmit = keyword => {
-    if (keyword === query) {
-      return;
-    }
-
-    setQuery(keyword);
-  };
+  const { error, movies, totalResults } = useGetMovies(query, page);
 
   useEffect(() => {
     const handleScroll = e => {
@@ -37,18 +30,41 @@ function Layout() {
     };
   }, []);
 
-  const onClick = () => {
+  const onUpClick = () => {
     window.scrollTo(0, 0);
+  };
+
+  const onSubmit = keyword => {
+    if (keyword === query) {
+      return;
+    }
+
+    setQuery(keyword);
+    setPage(1);
+  };
+
+  const onPageClick = page => {
+    setPage(page);
   };
 
   return (
     <>
       <Header onSubmit={onSubmit} error={error} />
       <Main>
-        <Outlet context={{ query, genres, movies, error }} />
+        <Outlet
+          context={{
+            query,
+            genres,
+            movies,
+            error,
+            totalResults,
+            onPageClick,
+            page,
+          }}
+        />
 
         {showUp && (
-          <Button type="button" onClick={onClick} className={'up'}>
+          <Button type="button" onClick={onUpClick} className={'up'}>
             <ArrowUp />
           </Button>
         )}
