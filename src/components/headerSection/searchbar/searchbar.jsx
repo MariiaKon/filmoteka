@@ -1,45 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setQuery } from 'redux/reducers/querySlice';
+import { setPage } from 'redux/reducers/pageSlice';
 import { ReactComponent as SearchSvg } from 'icons/search.svg';
 import { Form, Input, SubmitBtn } from './searchbar.styled';
 
-function Searchbar({ onSubmit }) {
-  const [query, setQuery] = useState('');
-  const location = useLocation();
-  const navigate = useNavigate();
-  const regex = new RegExp('=([a-zA-Z0-9]*)&');
-  const queryStr = regex.exec(location.search);
+function Searchbar() {
+  const dispatch = useDispatch();
 
-  const searchMovies = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    const keyword = e.target.elements.searchbar.value.trim();
-
-    setQuery(keyword);
-    onSubmit(keyword);
-
-    keyword === ''
-      ? navigate('/')
-      : navigate(`?query=${keyword.toLowerCase()}`);
+    dispatch(setQuery(e.target.elements.searchbar.value.trim()));
+    dispatch(setPage(1));
 
     e.target.elements.searchbar.value = '';
   };
 
-  useEffect(() => {
-    onSubmit(query);
-  }, [onSubmit, query]);
-
-  useEffect(() => {
-    if (queryStr === null) {
-      setQuery('');
-      return;
-    }
-
-    setQuery(queryStr[1]);
-  }, [queryStr, location.search]);
-
   return (
-    <Form action="" onSubmit={searchMovies}>
+    <Form action="" onSubmit={handleSubmit}>
       <Input
         type="text"
         name="searchbar"
