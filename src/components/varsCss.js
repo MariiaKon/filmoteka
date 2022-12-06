@@ -8,7 +8,7 @@ const varsCss = {
   textErrorColor: '#FF001B',
   fontSizePrimary: '12px',
   fontSizeSecondary: '14px',
-  transition: '300ms',
+  transition: '250ms',
 };
 
 export default varsCss;

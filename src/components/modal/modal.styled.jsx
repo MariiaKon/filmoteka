@@ -93,7 +93,7 @@ export const DescrBox = styled.div`
 
 export const Descr = styled.ul`
   display: grid;
-  grid-template-rows: repeat(2, max-content) repeat(2, minmax(max-content, 1fr));
+  grid-template-rows: repeat(2, max-content) 32px 1fr;
   gap: 10px;
 
   &:first-child {
@@ -141,7 +141,7 @@ export const Button = styled(Btn)`
   }
 
   :hover {
-    box-shadow: 0px 8px 20px ${varsCss.accentColor};
+    box-shadow: 0px 0px 5px ${varsCss.accentColor};
   }
 
   &.active {
