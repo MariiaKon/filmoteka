@@ -1,15 +1,18 @@
-import { useOutletContext } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPage } from 'redux/reducers/pageSlice';
 import { ReactComponent as ArrowLeft } from 'icons/arrow_left.svg';
 import { ReactComponent as ArrowRight } from 'icons/arrow_right.svg';
 import { ReactComponent as Elipsis } from 'icons/elipsis.svg';
 import { Pagination } from './pagination.styled';
 
-function Pages({ totalResults, perPage }) {
-  const { onPageClick, page } = useOutletContext();
+function Pages({ totalResults, perPage, cb }) {
+  const dispatch = useDispatch();
+  const page = useSelector(state => state.page);
   const totalPages = Math.ceil(totalResults / perPage);
 
   const handleClick = e => {
-    onPageClick(e.selected + 1);
+    dispatch(setPage(e.selected + 1));
+    cb(e.selected);
   };
 
   return (
