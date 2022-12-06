@@ -20,13 +20,15 @@ export const getGenres = async () => {
   return response.data;
 };
 
-export const getMovies = async query => {
+export const getMovies = async (query, page) => {
+  options.params.page = page;
+  options.params.query = query;
+
   if (query === '') {
     const response = await axios.get('trending/movie/day', options);
     return response.data;
   }
 
-  options.params.query = query;
   const response = await axios.get('/search/movie', options);
   return response.data;
 };
