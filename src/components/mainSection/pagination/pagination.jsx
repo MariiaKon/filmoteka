@@ -15,26 +15,40 @@ function Pages({ totalResults, perPage, cb }) {
     cb(e.selected);
   };
 
-  return (
-    totalPages && (
-      <Pagination
-        pageCount={totalPages}
-        previousLabel={<ArrowLeft />}
-        nextLabel={<ArrowRight />}
-        breakLabel={<Elipsis />}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={5}
-        breakLinkClassName={'ellipsis'}
-        pageLinkClassName={'link'}
-        activeLinkClassName={'current'}
-        previousLinkClassName={'arrows'}
-        nextLinkClassName={'arrows'}
-        disabledLinkClassName={'disabled'}
-        onPageChange={handleClick}
-        forcePage={page - 1}
-      />
-    )
-  );
+  return totalPages > 1 && document.documentElement.clientWidth < 768 ? (
+    <Pagination
+      pageCount={totalPages}
+      previousLabel={<ArrowLeft />}
+      nextLabel={<ArrowRight />}
+      breakLabel={null}
+      marginPagesDisplayed={0}
+      pageRangeDisplayed={5}
+      pageLinkClassName={'link'}
+      activeLinkClassName={'current'}
+      previousLinkClassName={'arrows'}
+      nextLinkClassName={'arrows'}
+      disabledLinkClassName={'disabled'}
+      onPageChange={handleClick}
+      forcePage={page - 1}
+    />
+  ) : totalPages > 1 ? (
+    <Pagination
+      pageCount={totalPages}
+      previousLabel={<ArrowLeft />}
+      nextLabel={<ArrowRight />}
+      breakLabel={<Elipsis />}
+      marginPagesDisplayed={1}
+      pageRangeDisplayed={5}
+      breakLinkClassName={'ellipsis'}
+      pageLinkClassName={'link'}
+      activeLinkClassName={'current'}
+      previousLinkClassName={'arrows'}
+      nextLinkClassName={'arrows'}
+      disabledLinkClassName={'disabled'}
+      onPageChange={handleClick}
+      forcePage={page - 1}
+    />
+  ) : null;
 }
 
 export default Pages;
