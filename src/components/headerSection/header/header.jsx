@@ -5,7 +5,7 @@ import Error from '../error/error';
 import LibraryBtns from '../buttonbar/buttonbar';
 import { HeadHome, HeadLibrary, Container } from './header.styled';
 
-function Header({ onSubmit, error }) {
+function Header({ error }) {
   const location = useLocation();
 
   return location.pathname.includes('library') ? (
@@ -19,7 +19,7 @@ function Header({ onSubmit, error }) {
     <HeadHome>
       <Container>
         <Navigation />
-        <Searchbar onSubmit={onSubmit} />
+        <Searchbar />
         {error && (
           <Error
             msg={

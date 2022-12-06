@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
 import useGetGenres from 'hooks/useGetGenres';
 import useGetMovies from 'hooks/useGetMovies';
-
 import Header from 'components/headerSection/header/header';
 import Main from 'components/mainSection/main/main';
 import Footer from 'components/footerSection/footer';
 import { Button } from './layout.styled';
 
 function Layout() {
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [showUp, setShowUp] = useState(false);
+  const navigate = useNavigate();
   const genres = useGetGenres();
+  const query = useSelector(state => state.query);
+  const page = useSelector(state => state.page);
+  const [showUp, setShowUp] = useState(false);
   const { error, movies, totalResults } = useGetMovies(query, page);
 
   useEffect(() => {
@@ -34,32 +35,22 @@ function Layout() {
     window.scrollTo(0, 0);
   };
 
-  const onSubmit = keyword => {
-    if (keyword === query) {
-      return;
-    }
-
-    setQuery(keyword);
-    setPage(1);
-  };
-
-  const onPageClick = page => {
-    setPage(page);
-  };
+  useEffect(() => {
+    query === ''
+      ? navigate(`?trendings&page=${page}`)
+      : navigate(`?query=${query.toLowerCase()}&page=${page}`);
+  }, [query, page, navigate]);
 
   return (
     <>
-      <Header onSubmit={onSubmit} error={error} />
+      <Header error={error} />
       <Main>
         <Outlet
           context={{
-            query,
             genres,
             movies,
             error,
             totalResults,
-            onPageClick,
-            page,
           }}
         />
 
