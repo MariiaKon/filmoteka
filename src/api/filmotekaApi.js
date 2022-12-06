@@ -16,7 +16,7 @@ const options = {
 };
 
 export const getGenres = async () => {
-  const response = await axios.get('/genre/movie/list', options);
+  const response = await axios.get('genre/movie/list', options);
   return response.data;
 };
 
@@ -29,6 +29,6 @@ export const getMovies = async (query, page) => {
     return response.data;
   }
 
-  const response = await axios.get('/search/movie', options);
+  const response = await axios.get('search/movie', options);
   return response.data;
 };
