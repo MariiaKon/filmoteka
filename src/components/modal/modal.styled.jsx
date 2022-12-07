@@ -30,7 +30,7 @@ export const ModalFrame = styled.div`
   padding: 48px 20px 40px;
   margin: 20px auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     grid-template-columns: repeat(2, 264px);
     gap: 32px;
     width: 618px;
@@ -38,7 +38,7 @@ export const ModalFrame = styled.div`
     padding: 42px 30px 40px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     grid-template-columns: repeat(2, 396px);
     gap: 30px;
     width: 882px;
@@ -58,11 +58,11 @@ export const MoviePoster = styled(Poster)`
   height: 357px;
   margin-bottom: 0;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     height: 374px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     height: 478px;
   }
 `;
@@ -74,7 +74,7 @@ export const MovieTitle = styled(Title)`
   font-size: 20px;
   line-height: 20px;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     font-size: 30px;
     line-height: 31px;
   }
@@ -86,7 +86,7 @@ export const DescrBox = styled.div`
   gap: 40px;
   margin: 20px auto;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     gap: 80px;
   }
 `;
@@ -120,7 +120,7 @@ export const Buttons = styled(ButtonBar)`
   grid-area: auto;
   margin-top: 20px;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     justify-content: flex-start;
   }
 `;
@@ -131,11 +131,11 @@ export const Button = styled(Btn)`
   height: 44px;
   width: 113px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     width: 125px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     width: 136px;
   }
 

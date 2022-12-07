@@ -1,3 +1,4 @@
+import varsCss from 'components/varsCss';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import MovieList from 'components/mainSection/movieList/movieList';
@@ -7,9 +8,9 @@ function LibraryView({ movies }) {
   const [startIdx, setStartIdx] = useState(0);
 
   const perPage = (() => {
-    if (document.documentElement.clientWidth < 768) {
+    if (document.documentElement.clientWidth < `${varsCss.tablet}`) {
       return 4;
-    } else if (document.documentElement.clientWidth > 1024) {
+    } else if (document.documentElement.clientWidth > `${varsCss.desktop}`) {
       return 9;
     }
     return 8;

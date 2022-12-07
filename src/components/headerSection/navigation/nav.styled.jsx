@@ -19,7 +19,7 @@ export const Navlink = styled(NavLink)`
     margin-right: 0;
   }
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     font-size: ${varsCss.fontSizeSecondary};
   }
 

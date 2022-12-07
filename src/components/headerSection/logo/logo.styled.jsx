@@ -14,7 +14,7 @@ export const LogoTitle = styled.span`
   margin-left: 10px;
   color: ${varsCss.primaryColor};
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: ${varsCss.tablet - 1}px) {
     display: none;
   }
 `;

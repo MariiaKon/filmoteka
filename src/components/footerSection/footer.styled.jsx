@@ -12,6 +12,11 @@ export const Foot = styled.footer`
   font-size: ${varsCss.fontSizeSecondary};
   font-weight: 400;
 
+  & a {
+    color: ${varsCss.textAccentColor};
+    font-weight: 700;
+  }
+
   & > p:first-child {
     position: relative;
     margin-right: 20px;
@@ -28,7 +33,7 @@ export const Foot = styled.footer`
     right: -10px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     font-size: 16px;
 
     & > p,

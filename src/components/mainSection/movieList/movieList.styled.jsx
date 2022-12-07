@@ -1,3 +1,4 @@
+import varsCss from 'components/varsCss';
 import styled from 'styled-components';
 
 export const List = styled.ul`
@@ -6,13 +7,13 @@ export const List = styled.ul`
   gap: 20px;
   margin-bottom: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     grid-template-columns: repeat(2, 294px);
     gap: 30px;
     margin-bottom: 50px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     grid-template-columns: repeat(3, 274px);
   } ;
 `;

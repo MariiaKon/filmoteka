@@ -5,12 +5,12 @@ export const Movie = styled.li`
   width: 280px;
   height: 443px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     width: 294px;
     height: 440px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     width: 274px;
   } ;
 `;
@@ -21,12 +21,12 @@ export const Poster = styled.img`
   border-radius: 5px;
   margin-bottom: 10px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     width: 294px;
     height: 398px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: ${varsCss.desktop}px) {
     width: 274px;
   }
 `;

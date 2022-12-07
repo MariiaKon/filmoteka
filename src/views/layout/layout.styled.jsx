@@ -15,11 +15,8 @@ export const Button = styled(Btn)`
     background-color: ${varsCss.accentColor};
     opacity: 0.7;
 
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: ${varsCss.desktop}px) {
       right: 50px;
-    }
-
-    @media screen and (min-width: 1024px) {
       bottom: 150px;
     }
   }

@@ -1,3 +1,4 @@
+import varsCss from 'components/varsCss';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { setPage } from 'redux/reducers/pageSlice';
@@ -21,7 +22,8 @@ function Pages({ totalResults, perPage, cb }) {
     dispatch(setPage(e.selected + 1));
   };
 
-  return totalPages > 1 && document.documentElement.clientWidth < 768 ? (
+  return totalPages > 1 &&
+    document.documentElement.clientWidth < `${varsCss.tablet}` ? (
     <Pagination
       pageCount={totalPages}
       previousLabel={<ArrowLeft />}

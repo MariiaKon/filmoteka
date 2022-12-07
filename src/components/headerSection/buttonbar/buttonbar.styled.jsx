@@ -9,7 +9,7 @@ export const ButtonBar = styled.ul`
   justify-content: center;
   margin-top: 50px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     gap: 15px;
   }
 `;
@@ -28,7 +28,7 @@ export const Button = styled(NavLink)`
   border-color: ${varsCss.primaryColor};
   transition: ${varsCss.transition};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     width: 136px;
   }
 

@@ -1,7 +1,7 @@
 import varsCss from 'components/varsCss';
 import styled, { keyframes } from 'styled-components';
 
-const breatheAnimation = keyframes`
+const loader = keyframes`
  0% { rotate: 45deg }
  100% { rotate: 405deg  }
 `;
@@ -16,7 +16,7 @@ export const LoaderBox = styled.div`
   border: 15px solid ${varsCss.secondaryColor};
   border-top-color: ${varsCss.accentColor};
   border-radius: 50%;
-  animation-name: ${breatheAnimation};
+  animation-name: ${loader};
   animation-duration: 1s;
   animation-iteration-count: infinite;
   transition-timing-function: ease-in-out;

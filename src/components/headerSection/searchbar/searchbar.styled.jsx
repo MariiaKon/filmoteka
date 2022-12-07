@@ -18,7 +18,7 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid ${varsCss.primaryColor};
 
-  @media screen and (min-width: 767px) {
+  @media screen and (min-width: ${varsCss.tablet}px) {
     font-size: ${varsCss.fontSizeSecondary};
   }
 
@@ -29,7 +29,7 @@ export const Input = styled.input`
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: ${varsCss.primaryColor};
 
-    @media screen and (min-width: 767px) {
+    @media screen and (min-width: ${varsCss.tablet}px) {
       font-size: ${varsCss.fontSizeSecondary};
       line-height: 16px;
     }
