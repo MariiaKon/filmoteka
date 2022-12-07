@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
-import useGetGenres from 'hooks/useGetGenres';
 import useGetMovies from 'hooks/useGetMovies';
 import Header from 'components/headerSection/header/header';
 import Main from 'components/mainSection/main/main';
@@ -11,7 +10,6 @@ import { Button } from './layout.styled';
 
 function Layout() {
   const navigate = useNavigate();
-  const genres = useGetGenres();
   const query = useSelector(state => state.query);
   const page = useSelector(state => state.page);
   const [showUp, setShowUp] = useState(false);
@@ -47,7 +45,6 @@ function Layout() {
       <Main>
         <Outlet
           context={{
-            genres,
             movies,
             error,
             totalResults,

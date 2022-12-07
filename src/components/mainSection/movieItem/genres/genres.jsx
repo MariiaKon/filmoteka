@@ -1,9 +1,9 @@
-import { useOutletContext } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import update from 'immutability-helper';
 import { GenreList, GenreItem } from './genres.styled';
 
 function Genres({ ids, isOpen }) {
-  const { genres } = useOutletContext();
+  const genres = useSelector(state => state.genresList.genres);
 
   const genreIdName = ids.map(id => {
     return genres.find(genre => id === genre.id);
@@ -22,7 +22,7 @@ function Genres({ ids, isOpen }) {
 
   return (
     <GenreList>
-      {croppedIds?.length > 0 ? (
+      {croppedIds.length > 0 ? (
         croppedIds.map(genre => {
           return <GenreItem key={genre.id}>{genre.name}</GenreItem>;
         })

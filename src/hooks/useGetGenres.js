@@ -1,18 +1,23 @@
 import * as API from 'api/filmotekaApi';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGenres } from 'redux/reducers/genresSlice';
 
 function useGetGenres() {
-  const [genres, setGenres] = useState([]);
+  const dispatch = useDispatch();
+  const genres = useSelector(state => state.genresList.genres);
 
   try {
     useEffect(() => {
-      API.getGenres().then(response => {
-        setGenres(prevState => [...response.genres]);
-      });
-    }, []);
-  } catch (error) {}
+      if (genres.length !== 0) {
+        return;
+      }
 
-  return genres;
+      API.getGenres().then(response => {
+        dispatch(setGenres(response.genres));
+      });
+    }, [dispatch, genres.length]);
+  } catch (error) {}
 }
 
 export default useGetGenres;
