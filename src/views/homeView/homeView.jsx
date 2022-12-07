@@ -8,9 +8,7 @@ function HomeView() {
   return (
     <>
       {movies && <MovieList movies={movies} />}
-      {!error && (
-        <Pages totalResults={totalResults} perPage={20} cb={() => {}} />
-      )}
+      {!error && <Pages totalResults={totalResults} perPage={20} />}
     </>
   );
 }
