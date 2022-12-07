@@ -1,6 +1,6 @@
 import varsCss from 'components/varsCss';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import EmptyList from './emptyList/emptyList';
 import MovieList from 'components/mainSection/movieList/movieList';
 import Pages from 'components/mainSection/pagination/pagination';
 
@@ -27,9 +27,7 @@ function LibraryView({ movies }) {
   return (
     <>
       {movies.length === 0 ? (
-        <div>
-          There is no movies. <NavLink to="/">Let's add some?</NavLink>
-        </div>
+        <EmptyList />
       ) : (
         <MovieList movies={moviesToShow} />
       )}
