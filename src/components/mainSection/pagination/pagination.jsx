@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { setPage } from 'redux/reducers/pageSlice';
 import { ReactComponent as ArrowLeft } from 'icons/arrow_left.svg';
 import { ReactComponent as ArrowRight } from 'icons/arrow_right.svg';
@@ -7,12 +8,17 @@ import { Pagination } from './pagination.styled';
 
 function Pages({ totalResults, perPage, cb }) {
   const dispatch = useDispatch();
+  const location = useLocation();
   const page = useSelector(state => state.page);
   const totalPages = Math.ceil(totalResults / perPage);
 
   const handleClick = e => {
+    if (location.pathname.includes('library')) {
+      cb(e.selected);
+      return;
+    }
+
     dispatch(setPage(e.selected + 1));
-    cb(e.selected);
   };
 
   return totalPages > 1 && document.documentElement.clientWidth < 768 ? (
@@ -29,7 +35,7 @@ function Pages({ totalResults, perPage, cb }) {
       nextLinkClassName={'arrows'}
       disabledLinkClassName={'disabled'}
       onPageChange={handleClick}
-      forcePage={page - 1}
+      forcePage={location.pathname.includes('library') ? 0 : page - 1}
     />
   ) : totalPages > 1 ? (
     <Pagination
@@ -46,7 +52,7 @@ function Pages({ totalResults, perPage, cb }) {
       nextLinkClassName={'arrows'}
       disabledLinkClassName={'disabled'}
       onPageChange={handleClick}
-      forcePage={page - 1}
+      forcePage={location.pathname.includes('library') ? 0 : page - 1}
     />
   ) : null;
 }
