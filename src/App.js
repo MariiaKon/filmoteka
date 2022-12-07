@@ -1,12 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import Loader from 'components/loader/loader';
 const Layout = lazy(() => import('views/layout/layout'));
 const HomeView = lazy(() => import('views/homeView/homeView'));
-const WatchedView = lazy(() => import('views/library/watchedView/watchedView'));
-const QueueView = lazy(() => import('views/library/queueView/queueView'));
+const LibraryView = lazy(() => import('views/libraryView/libraryView'));
 
 function App() {
+  const watchedList = useSelector(state => state.watchedList);
+  const queueList = useSelector(state => state.queueList);
+
   return (
     <BrowserRouter basename="/filmoteka">
       <Routes>
@@ -31,7 +34,7 @@ function App() {
             path="library/watched"
             element={
               <Suspense fallback={<Loader />}>
-                <WatchedView />
+                <LibraryView movies={watchedList} />
               </Suspense>
             }
           />
@@ -39,7 +42,7 @@ function App() {
             path="library/queue"
             element={
               <Suspense fallback={<Loader />}>
-                <QueueView />
+                <LibraryView movies={queueList} />
               </Suspense>
             }
           />
