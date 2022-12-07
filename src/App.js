@@ -7,8 +7,8 @@ const HomeView = lazy(() => import('views/homeView/homeView'));
 const LibraryView = lazy(() => import('views/libraryView/libraryView'));
 
 function App() {
-  const watchedList = useSelector(state => state.watchedList);
-  const queueList = useSelector(state => state.queueList);
+  const watchedList = useSelector(state => state.libraryLists.watchedList);
+  const queueList = useSelector(state => state.libraryLists.queueList);
 
   return (
     <BrowserRouter basename="/filmoteka">

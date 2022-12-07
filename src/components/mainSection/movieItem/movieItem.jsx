@@ -9,8 +9,8 @@ import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
 
 function MovieItem({ movie }) {
-  const watchedList = useSelector(state => state.watchedList);
-  const queueList = useSelector(state => state.queueList);
+  const watchedList = useSelector(state => state.libraryLists.watchedList);
+  const queueList = useSelector(state => state.libraryLists.queueList);
   const inWatched = watchedList.some(mv => mv.id === movie.id);
   const inQueue = queueList.some(mv => mv.id === movie.id);
   const [movieInfo, setMovieInfo] = useState(null);

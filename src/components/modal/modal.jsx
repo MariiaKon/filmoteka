@@ -5,8 +5,9 @@ import { base_url, file_size_modal } from 'api/filmotekaApi';
 import {
   addToWatchedList,
   removeFromWatchedList,
-} from 'redux/reducers/watchedSlice';
-import { addToQueueList, removeFromQueueList } from 'redux/reducers/queueSlice';
+  addToQueueList,
+  removeFromQueueList,
+} from 'redux/reducers/librarySlice';
 import { ReactComponent as CrossSvg } from 'icons/cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
 import Rating from 'components/mainSection/movieItem/rating/rating';
