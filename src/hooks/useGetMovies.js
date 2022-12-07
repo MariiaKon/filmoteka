@@ -1,13 +1,19 @@
 import * as API from 'api/filmotekaApi';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function useGetMovies(query, page) {
+  const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
 
   try {
     useEffect(() => {
+      if (location.pathname.includes('library')) {
+        return;
+      }
+
       API.getMovies(query, page).then(response => {
         if (response === null || response.results.length === 0) {
           setError(true);
@@ -28,7 +34,7 @@ function useGetMovies(query, page) {
         setMovies(prevState => [...results]);
         setTotalResults(response.total_results);
       });
-    }, [query, page]);
+    }, [query, page, location.pathname]);
   } catch (error) {}
 
   return { movies, error, totalResults };
