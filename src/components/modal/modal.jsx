@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import useModalClose from 'hooks/useModalClose';
 import { base_url, file_size_modal } from 'api/filmotekaApi';
@@ -25,24 +25,29 @@ import {
   Button,
 } from './modal.styled';
 
-function Modal({ movie, isOpen, onClick }) {
+function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
   const dispatch = useDispatch();
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
+
+  useEffect(() => {
+    setWatched(inWatched);
+    setQueue(inQueue);
+  }, [inWatched, inQueue]);
 
   useModalClose(onClick);
 
   const onClickHandler = e => {
     switch (e.target.id) {
       case 'watched':
-        setWatched(prevState => !watched);
+        setWatched(prevState => !prevState);
         !watched
           ? dispatch(addToWatchedList(movie))
           : dispatch(removeFromWatchedList(movie.id));
         break;
 
       case 'queue':
-        setQueue(prevState => !queue);
+        setQueue(prevState => !prevState);
         !queue
           ? dispatch(addToQueueList(movie))
           : dispatch(removeFromQueueList(movie.id));

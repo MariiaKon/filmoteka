@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Portal from '@mui/base/Portal';
 import { base_url, file_size } from 'api/filmotekaApi';
@@ -8,6 +9,10 @@ import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
 
 function MovieItem({ movie }) {
+  const watchedList = useSelector(state => state.watchedList);
+  const queueList = useSelector(state => state.queueList);
+  const inWatched = watchedList.some(mv => mv.id === movie.id);
+  const inQueue = queueList.some(mv => mv.id === movie.id);
   const [movieInfo, setMovieInfo] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -19,6 +24,7 @@ function MovieItem({ movie }) {
 
   const closeModal = () => {
     setIsOpen(false);
+    setMovieInfo(null);
   };
 
   return (
@@ -51,7 +57,13 @@ function MovieItem({ movie }) {
 
       <Portal
         children={
-          <Modal movie={movieInfo} isOpen={isOpen} onClick={closeModal} />
+          <Modal
+            movie={movieInfo}
+            isOpen={isOpen}
+            onClick={closeModal}
+            inWatched={inWatched}
+            inQueue={inQueue}
+          />
         }
         container={document.getElementById('modal-root')}
       />
