@@ -1,1 +1,0 @@
-{"version":3,"file":"static/js/701.cdbeb905.chunk.js","mappings":"mHAIA,UAJA,WACE,OAAO,oCACT,C","sources":["views/library/queueView/queueView.jsx"],"sourcesContent":["function QueueView() {\n  return <div> QUEUE </div>;\n}\n\nexport default QueueView;\n"],"names":[],"sourceRoot":""}
