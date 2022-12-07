@@ -18,7 +18,7 @@ function Layout() {
   const { error, movies, totalResults } = useGetMovies(query, page);
 
   useEffect(() => {
-    const handleScroll = e => {
+    const handleScroll = () => {
       document.documentElement.clientHeight < window.scrollY
         ? setShowUp(true)
         : setShowUp(false);
