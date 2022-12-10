@@ -1,48 +1,29 @@
 import varsCss from 'components/varsCss';
 import styled from 'styled-components';
-import bg_home_mob from './bg_images/bg_header_home_mob.webp';
-import bg_lib_mob from './bg_images/bg_header_library_mob.webp';
-import bg_home_tablet from './bg_images/bg_header_home_tablet.webp';
-import bg_lib_tablet from './bg_images/bg_header_library_tablet.webp';
-import bg_home_desktop from './bg_images/bg_header_home_desktop.webp';
-import bg_lib_desktop from './bg_images/bg_header_library_desktop.webp';
+import h_mob from './bg_images/bg_header_home_mob.webp';
+import l_mob from './bg_images/bg_header_library_mob.webp';
+import h_tab from './bg_images/bg_header_home_tablet.webp';
+import l_tab from './bg_images/bg_header_library_tablet.webp';
+import h_desk from './bg_images/bg_header_home_desktop.webp';
+import l_desk from './bg_images/bg_header_library_desktop.webp';
 
-export const HeadHome = styled.header`
+export const HeaderSection = styled.header`
   min-height: 230px;
   padding: 45px 0;
-  background-image: url(${bg_home_mob});
+  background: ${varsCss.textSecondary};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  background-image: url(${props => (props.location ? l_mob : h_mob)});
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     padding: 45px 0 60px;
-    background-image: url(${bg_home_tablet});
+    background-image: url(${props => (props.location ? l_tab : h_tab)});
   }
 
   @media screen and (min-width: ${varsCss.desktop}px) {
-    padding: 45px 0 60px;
-    background-image: url(${bg_home_desktop});
-  } ;
-`;
-
-export const HeadLibrary = styled.header`
-  min-height: 230px;
-  padding: 45px 0;
-  background-image: url(${bg_lib_mob});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  @media screen and (min-width: ${varsCss.tablet}px) {
-    padding: 45px 0 60px;
-    background-image: url(${bg_lib_tablet});
+    background-image: url(${props => (props.location ? l_desk : h_desk)});
   }
-
-  @media screen and (min-width: ${varsCss.desktop}px) {
-    padding: 45px 0 60px;
-    background-image: url(${bg_lib_desktop});
-  } ;
 `;
 
 export const Container = styled.div`

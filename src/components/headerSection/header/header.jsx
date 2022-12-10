@@ -3,32 +3,31 @@ import Navigation from '../navigation/nav';
 import Searchbar from '../searchbar/searchbar';
 import Error from '../error/error';
 import LibraryBtns from '../buttonbar/buttonbar';
-import { HeadHome, HeadLibrary, Container } from './header.styled';
+import { HeaderSection, Container } from './header.styled';
 
 function Header({ error }) {
   const location = useLocation();
 
-  return location.pathname.includes('library') ? (
-    <HeadLibrary>
+  return (
+    <HeaderSection location={location.pathname.includes('library')}>
       <Container>
         <Navigation />
-        <LibraryBtns />
-      </Container>
-    </HeadLibrary>
-  ) : (
-    <HeadHome>
-      <Container>
-        <Navigation />
-        <Searchbar />
-        {error && (
-          <Error
-            msg={
-              'Search result not successful. Enter the correct movie name and try again.'
-            }
-          />
+        {location.pathname.includes('library') ? (
+          <LibraryBtns />
+        ) : (
+          <>
+            <Searchbar />
+            {error && (
+              <Error
+                msg={
+                  'Search result not successful. Enter the correct movie name and try again.'
+                }
+              />
+            )}
+          </>
         )}
       </Container>
-    </HeadHome>
+    </HeaderSection>
   );
 }
 

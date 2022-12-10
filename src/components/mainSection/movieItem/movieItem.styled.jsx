@@ -18,6 +18,7 @@ export const Movie = styled.li`
 export const Poster = styled.img`
   width: 280px;
   height: 402px;
+  background: ${varsCss.secondaryColor};
   border-radius: 5px;
   margin-bottom: 10px;
 
