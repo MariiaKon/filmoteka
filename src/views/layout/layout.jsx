@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
 import useGetMovies from 'hooks/useGetMovies';
+import useSetQueryStr from 'hooks/useSetQueryStr';
 import Header from 'components/headerSection/header/header';
 import Main from 'components/mainSection/main/main';
 import Footer from 'components/footerSection/footer';
 import { Button } from './layout.styled';
 
 function Layout() {
-  const navigate = useNavigate();
   const query = useSelector(state => state.query);
   const page = useSelector(state => state.page);
   const [showUp, setShowUp] = useState(false);
   const { error, movies, totalResults } = useGetMovies(query, page);
+  useSetQueryStr(query, page);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,12 +33,6 @@ function Layout() {
   const onUpClick = () => {
     window.scrollTo(0, 0);
   };
-
-  useEffect(() => {
-    query === ''
-      ? navigate(`?trendings&page=${page}`)
-      : navigate(`?query=${query.toLowerCase()}&page=${page}`);
-  }, [query, page, navigate]);
 
   return (
     <>
