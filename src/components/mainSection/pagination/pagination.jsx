@@ -14,6 +14,8 @@ function Pages({ totalResults, perPage, cb }) {
   const totalPages = Math.ceil(totalResults / perPage);
 
   const handleClick = e => {
+    window.scrollTo(0, 200);
+
     if (location.pathname.includes('library')) {
       cb(e.selected);
       return;
