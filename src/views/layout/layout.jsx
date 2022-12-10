@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
 import useGetMovies from 'hooks/useGetMovies';
 import useSetQueryStr from 'hooks/useSetQueryStr';
+import useScrollUp from 'hooks/useScrollUp';
 import Header from 'components/headerSection/header/header';
 import Main from 'components/mainSection/main/main';
 import Footer from 'components/footerSection/footer';
@@ -14,21 +15,9 @@ function Layout() {
   const page = useSelector(state => state.page);
   const [showUp, setShowUp] = useState(false);
   const { error, movies, totalResults } = useGetMovies(query, page);
+
   useSetQueryStr(query, page);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      document.documentElement.clientHeight < window.scrollY
-        ? setShowUp(true)
-        : setShowUp(false);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  useScrollUp(setShowUp);
 
   const onUpClick = () => {
     window.scrollTo(0, 0);
