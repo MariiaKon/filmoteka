@@ -24,9 +24,7 @@ function Searchbar() {
         autoComplete="off"
         placeholder="Search movie"
       />
-      <SubmitBtn type="submit">
-        <SearchSvg />
-      </SubmitBtn>
+      <SubmitBtn type="submit" children={<SearchSvg />} />
     </Form>
   );
 }

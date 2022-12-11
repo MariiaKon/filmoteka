@@ -10,7 +10,7 @@ function LibraryView({ movies }) {
   const perPage = (() => {
     if (document.documentElement.clientWidth < `${varsCss.tablet}`) {
       return 4;
-    } else if (document.documentElement.clientWidth > `${varsCss.desktop}`) {
+    } else if (document.documentElement.clientWidth >= `${varsCss.desktop}`) {
       return 9;
     }
     return 8;

@@ -4,8 +4,8 @@ export const genresSlice = createSlice({
   name: 'genresList',
   initialState: { genres: [] },
   reducers: {
-    setGenres: (state, action) => {
-      state.genres = action.payload;
+    setGenres: (state, { payload }) => {
+      state.genres = payload;
     },
   },
 });

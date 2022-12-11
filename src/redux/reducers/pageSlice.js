@@ -4,8 +4,8 @@ export const pageSlice = createSlice({
   name: 'page',
   initialState: 1,
   reducers: {
-    setPage: (state, action) => {
-      return (state = action.payload);
+    setPage: (state, { payload }) => {
+      return (state = payload);
     },
   },
 });

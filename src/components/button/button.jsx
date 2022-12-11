@@ -1,6 +1,6 @@
 import { Btn } from 'components/button/button.styled';
 
-function Button({ type = 'submit', children, onClick }) {
+function Button({ type, children, onClick }) {
   return (
     <Btn type={type} onClick={onClick}>
       {children}

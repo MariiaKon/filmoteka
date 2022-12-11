@@ -7,21 +7,19 @@ export const librarySlice = createSlice({
     queueList: [],
   },
   reducers: {
-    addToWatchedList: (state, action) => {
-      state.watchedList = [action.payload, ...state.watchedList];
+    addToWatchedList: (state, { payload }) => {
+      state.watchedList = [payload, ...state.watchedList];
     },
-    removeFromWatchedList: (state, action) => {
+    removeFromWatchedList: (state, { payload }) => {
       state.watchedList = state.watchedList.filter(
-        movie => movie.id !== action.payload
+        movie => movie.id !== payload
       );
     },
-    addToQueueList: (state, action) => {
-      state.queueList = [action.payload, ...state.queueList];
+    addToQueueList: (state, { payload }) => {
+      state.queueList = [payload, ...state.queueList];
     },
-    removeFromQueueList: (state, action) => {
-      state.queueList = state.queueList.filter(
-        movie => movie.id !== action.payload
-      );
+    removeFromQueueList: (state, { payload }) => {
+      state.queueList = state.queueList.filter(movie => movie.id !== payload);
     },
   },
 });

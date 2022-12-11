@@ -64,9 +64,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
       {isOpen && (
         <Overlay id="overlay">
           <ModalFrame>
-            <CloseBtn type="button" onClick={onClick}>
-              <CrossSvg />
-            </CloseBtn>
+            <CloseBtn type="button" onClick={onClick} children={<CrossSvg />} />
             {movie && (
               <>
                 <MoviePoster
