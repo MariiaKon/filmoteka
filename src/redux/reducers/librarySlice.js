@@ -8,7 +8,7 @@ export const librarySlice = createSlice({
   },
   reducers: {
     addToWatchedList: (state, action) => {
-      state.watchedList = [...state.watchedList, action.payload];
+      state.watchedList = [action.payload, ...state.watchedList];
     },
     removeFromWatchedList: (state, action) => {
       state.watchedList = state.watchedList.filter(
@@ -16,7 +16,7 @@ export const librarySlice = createSlice({
       );
     },
     addToQueueList: (state, action) => {
-      state.queueList = [...state.queueList, action.payload];
+      state.queueList = [action.payload, ...state.queueList];
     },
     removeFromQueueList: (state, action) => {
       state.queueList = state.queueList.filter(
