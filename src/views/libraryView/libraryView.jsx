@@ -17,7 +17,10 @@ function LibraryView({ movies }) {
   })();
 
   const endIdx = startIdx + perPage;
-  const moviesToShow = movies.slice(startIdx, endIdx);
+  const moviesToShow =
+    movies.slice(startIdx, endIdx).length > 0
+      ? movies.slice(startIdx, endIdx)
+      : movies.slice(startIdx - perPage, startIdx);
 
   const handleClick = pageIdx => {
     const newStart = (pageIdx * perPage) % movies.length;
