@@ -1,4 +1,5 @@
 import varsCss from 'components/varsCss';
+import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { setPage } from 'redux/reducers/pageSlice';
@@ -12,6 +13,8 @@ function Pages({ totalResults, perPage, cb }) {
   const location = useLocation();
   const page = useSelector(state => state.page);
   const totalPages = Math.ceil(totalResults / perPage);
+  const initTotalPages = useRef(totalPages);
+  const isMobile = document.documentElement.clientWidth < `${varsCss.tablet}`;
 
   const handleClick = e => {
     window.scrollTo(0, 200);
@@ -24,41 +27,35 @@ function Pages({ totalResults, perPage, cb }) {
     dispatch(setPage(e.selected + 1));
   };
 
-  return totalPages > 1 &&
-    document.documentElement.clientWidth < `${varsCss.tablet}` ? (
-    <Pagination
-      pageCount={totalPages}
-      previousLabel={<ArrowLeft />}
-      nextLabel={<ArrowRight />}
-      breakLabel={null}
-      marginPagesDisplayed={0}
-      pageRangeDisplayed={5}
-      pageLinkClassName={'link'}
-      activeLinkClassName={'current'}
-      previousLinkClassName={'arrows'}
-      nextLinkClassName={'arrows'}
-      disabledLinkClassName={'disabled'}
-      onPageChange={handleClick}
-      forcePage={location.pathname.includes('library') ? 0 : page - 1}
-    />
-  ) : totalPages > 1 ? (
-    <Pagination
-      pageCount={totalPages}
-      previousLabel={<ArrowLeft />}
-      nextLabel={<ArrowRight />}
-      breakLabel={<Elipsis />}
-      marginPagesDisplayed={1}
-      pageRangeDisplayed={5}
-      breakLinkClassName={'ellipsis'}
-      pageLinkClassName={'link'}
-      activeLinkClassName={'current'}
-      previousLinkClassName={'arrows'}
-      nextLinkClassName={'arrows'}
-      disabledLinkClassName={'disabled'}
-      onPageChange={handleClick}
-      forcePage={location.pathname.includes('library') ? 0 : page - 1}
-    />
-  ) : null;
+  const currentPage = (() => {
+    if (initTotalPages.current > totalPages) {
+      return totalPages - 1;
+    }
+    return 0;
+  })();
+
+  return (
+    totalPages > 1 && (
+      <Pagination
+        pageCount={totalPages}
+        previousLabel={<ArrowLeft />}
+        nextLabel={<ArrowRight />}
+        breakLabel={isMobile ? null : <Elipsis />}
+        marginPagesDisplayed={isMobile ? 0 : 1}
+        pageRangeDisplayed={5}
+        breakLinkClassName={!isMobile && 'ellipsis'}
+        pageLinkClassName={'link'}
+        activeLinkClassName={'current'}
+        previousLinkClassName={'arrows'}
+        nextLinkClassName={'arrows'}
+        disabledLinkClassName={'disabled'}
+        onPageChange={handleClick}
+        forcePage={
+          location.pathname.includes('library') ? currentPage : page - 1
+        }
+      />
+    )
+  );
 }
 
 export default Pages;
