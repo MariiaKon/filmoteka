@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Btn } from 'components/button/button.styled';
 
 export const Button = styled(Btn)`
+  cursor: pointer;
+
   &.up {
     position: fixed;
     bottom: 50px;

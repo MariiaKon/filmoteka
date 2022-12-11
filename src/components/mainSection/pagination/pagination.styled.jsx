@@ -6,6 +6,11 @@ export const Pagination = styled(ReactPaginate)`
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-top: 40px;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    margin-top: 50px;
+  }
 
   .arrows {
     display: flex;

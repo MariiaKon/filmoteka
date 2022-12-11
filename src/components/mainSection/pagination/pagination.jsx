@@ -42,7 +42,9 @@ function Pages({ totalResults, perPage, cb }) {
         nextLabel={<ArrowRight />}
         breakLabel={isMobile ? null : <Elipsis />}
         marginPagesDisplayed={isMobile ? 0 : 1}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={
+          (isMobile && page === 2) || (isMobile && page === 3) ? 4 : 5
+        }
         breakLinkClassName={!isMobile && 'ellipsis'}
         pageLinkClassName={'link'}
         activeLinkClassName={'current'}

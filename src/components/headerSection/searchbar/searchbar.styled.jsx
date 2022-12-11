@@ -47,4 +47,5 @@ export const SubmitBtn = styled(Btn)`
   top: -10px;
   right: -15px;
   border: none;
+  cursor: pointer;
 `;

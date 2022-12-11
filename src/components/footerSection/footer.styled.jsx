@@ -11,6 +11,7 @@ export const Foot = styled.footer`
   color: ${varsCss.textSecondary};
   font-size: ${varsCss.fontSizeSecondary};
   font-weight: 400;
+  cursor: default;
 
   & a {
     color: ${varsCss.textAccentColor};

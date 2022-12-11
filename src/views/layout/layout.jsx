@@ -36,9 +36,12 @@ function Layout() {
         />
 
         {showUp && (
-          <Button type="button" onClick={onUpClick} className={'up'}>
-            <ArrowUp />
-          </Button>
+          <Button
+            type="button"
+            onClick={onUpClick}
+            className={'up'}
+            children={<ArrowUp />}
+          />
         )}
       </Main>
       <Footer />
