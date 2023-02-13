@@ -46,7 +46,7 @@ function MovieItem({ movie }) {
             {movie.release_date && <Release>{movie.release_date}</Release>}
             {location.pathname.includes('library') ? (
               <Rating rating={movie.vote_average} />
-            ) : location.search !== '' ? (
+            ) : !location.search.includes('trendings') ? (
               <Rating rating={movie.vote_average} />
             ) : (
               false
