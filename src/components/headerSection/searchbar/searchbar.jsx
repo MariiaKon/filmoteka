@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { setQuery } from 'redux/reducers/querySlice';
 import { setPage } from 'redux/reducers/pageSlice';
-import { ReactComponent as SearchSvg } from 'icons/search.svg';
+import { ReactComponent as SearchSvg } from 'assets/icons/search.svg';
 import { Form, Input, SubmitBtn } from './searchbar.styled';
 
 function Searchbar() {

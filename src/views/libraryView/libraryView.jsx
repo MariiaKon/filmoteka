@@ -1,4 +1,4 @@
-import varsCss from 'components/varsCss';
+import varsCss from 'components/commonCss/varsCss';
 import { useState } from 'react';
 import EmptyList from './emptyList/emptyList';
 import MovieList from 'components/mainSection/movieList/movieList';

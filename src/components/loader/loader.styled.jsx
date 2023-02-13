@@ -1,4 +1,4 @@
-import varsCss from 'components/varsCss';
+import varsCss from 'components/commonCss/varsCss';
 import styled, { keyframes } from 'styled-components';
 
 const loader = keyframes`

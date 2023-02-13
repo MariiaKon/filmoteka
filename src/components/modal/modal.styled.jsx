@@ -1,4 +1,4 @@
-import varsCss from 'components/varsCss';
+import varsCss from 'components/commonCss/varsCss';
 import styled from 'styled-components';
 import { Btn } from 'components/button/button.styled';
 import { ButtonBar } from 'components/headerSection/buttonbar/buttonbar.styled';

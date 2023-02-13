@@ -8,7 +8,7 @@ import {
   addToQueueList,
   removeFromQueueList,
 } from 'redux/reducers/librarySlice';
-import { ReactComponent as CrossSvg } from 'icons/cross.svg';
+import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
 import Genres from 'components/mainSection/movieItem/genres/genres';
 import Rating from 'components/mainSection/movieItem/rating/rating';
 import {

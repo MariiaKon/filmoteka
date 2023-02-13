@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ReactComponent as ArrowUp } from 'icons/arrow_up.svg';
+import { ReactComponent as ArrowUp } from 'assets/icons/arrow_up.svg';
 import useGetMovies from 'hooks/useGetMovies';
 import useSetQueryStr from 'hooks/useSetQueryStr';
 import useScrollUp from 'hooks/useScrollUp';
