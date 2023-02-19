@@ -19,7 +19,7 @@ function Header({ error }) {
             {!location.pathname.includes('login') && <Searchbar />}
             {error && (
               <Error
-                msg={
+                children={
                   'Search result not successful. Enter the correct movie name and try again.'
                 }
               />

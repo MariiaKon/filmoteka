@@ -14,4 +14,5 @@ export const Btn = styled.button`
   border-color: ${varsCss.primaryColor};
   text-transform: uppercase;
   transition: ${varsCss.transition};
+  cursor: pointer;
 `;

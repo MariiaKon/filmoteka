@@ -1,7 +1,7 @@
 import { ErrorMsg } from './error.styled';
 
-function Error({ msg }) {
-  return <ErrorMsg>{msg}</ErrorMsg>;
+function Error({ children }) {
+  return <ErrorMsg>{children}</ErrorMsg>;
 }
 
 export default Error;
