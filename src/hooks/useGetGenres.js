@@ -1,7 +1,7 @@
 import * as API from 'api/filmotekaApi';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGenres } from 'redux/reducers/genresSlice';
+import { setGenres } from 'store/reducers/genresSlice';
 
 function useGetGenres() {
   const dispatch = useDispatch();

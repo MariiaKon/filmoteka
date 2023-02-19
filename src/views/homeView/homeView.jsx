@@ -1,6 +1,6 @@
 import { useOutletContext } from 'react-router-dom';
-import MovieList from 'components/mainSection/movieList/movieList';
-import Pages from 'components/mainSection/pagination/pagination';
+import MovieList from 'components/movieList/movieList';
+import Pages from 'components/pagination/pagination';
 
 function HomeView() {
   const { movies, error, totalResults } = useOutletContext();

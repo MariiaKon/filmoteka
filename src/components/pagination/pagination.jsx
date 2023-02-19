@@ -2,7 +2,7 @@ import varsCss from 'components/commonCss/varsCss';
 import { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { setPage } from 'redux/reducers/pageSlice';
+import { setPage } from 'store/reducers/pageSlice';
 import { ReactComponent as ArrowLeft } from 'assets/icons/arrow_left.svg';
 import { ReactComponent as ArrowRight } from 'assets/icons/arrow_right.svg';
 import { ReactComponent as Elipsis } from 'assets/icons/elipsis.svg';

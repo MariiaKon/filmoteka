@@ -1,11 +1,8 @@
 import varsCss from 'components/commonCss/varsCss';
 import styled from 'styled-components';
 import { Btn } from 'components/button/button.styled';
-import { ButtonBar } from 'components/headerSection/buttonbar/buttonbar.styled';
-import {
-  Poster,
-  Title,
-} from 'components/mainSection/movieItem/movieItem.styled';
+import { ButtonBar } from 'components/buttonbar/buttonbar.styled';
+import { Poster, Title } from 'components/movieItem/movieItem.styled';
 
 export const Overlay = styled.div`
   position: fixed;
@@ -115,7 +112,7 @@ export const Owerview = styled.p`
   line-height: 20px;
 `;
 
-export const Buttons = styled(ButtonBar)`
+export const ModalButtons = styled(ButtonBar)`
   gap: 15px;
   grid-area: auto;
   margin-top: 20px;

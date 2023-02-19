@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Portal from '@mui/base/Portal';
 import { base_url, file_size } from 'api/filmotekaApi';
-import Genres from './genres/genres';
-import Rating from './rating/rating';
+import Genres from 'components/genres/genres';
+import Rating from 'components/rating/rating';
 import Modal from 'components/modal/modal';
 import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
 

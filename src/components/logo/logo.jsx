@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { setQuery } from 'redux/reducers/querySlice';
-import { setPage } from 'redux/reducers/pageSlice';
+import { setQuery } from 'store/reducers/querySlice';
+import { setPage } from 'store/reducers/pageSlice';
 import { ReactComponent as LogoSvg } from 'assets/icons/logo.svg';
 import { LogoTitle, Navlink } from './logo.styled';
 

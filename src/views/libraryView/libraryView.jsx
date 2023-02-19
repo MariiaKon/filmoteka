@@ -1,8 +1,8 @@
 import varsCss from 'components/commonCss/varsCss';
 import { useState } from 'react';
 import EmptyList from './emptyList/emptyList';
-import MovieList from 'components/mainSection/movieList/movieList';
-import Pages from 'components/mainSection/pagination/pagination';
+import MovieList from 'components/movieList/movieList';
+import Pages from 'components/pagination/pagination';
 
 function LibraryView({ movies }) {
   const [startIdx, setStartIdx] = useState(0);

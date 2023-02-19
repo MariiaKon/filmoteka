@@ -1,4 +1,4 @@
-import MovieItem from 'components/mainSection/movieItem/movieItem';
+import MovieItem from 'components/movieItem/movieItem';
 import { List } from './movieList.styled';
 
 function MovieList({ movies }) {

@@ -7,10 +7,10 @@ import {
   removeFromWatchedList,
   addToQueueList,
   removeFromQueueList,
-} from 'redux/reducers/librarySlice';
+} from 'store/reducers/librarySlice';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
-import Genres from 'components/mainSection/movieItem/genres/genres';
-import Rating from 'components/mainSection/movieItem/rating/rating';
+import Genres from 'components/genres/genres';
+import Rating from 'components/rating/rating';
 import {
   Overlay,
   ModalFrame,
@@ -22,7 +22,7 @@ import {
   DescrItem,
   About,
   Owerview,
-  Buttons,
+  ModalButtons,
   Button,
 } from './modal.styled';
 
@@ -98,7 +98,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                   </DescrBox>
                   {movie.overview && <About>About</About>}
                   <Owerview>{movie.overview}</Owerview>
-                  <Buttons>
+                  <ModalButtons>
                     <li>
                       <Button
                         id="watched"
@@ -117,7 +117,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                         className={queue && 'active'}
                       />
                     </li>
-                  </Buttons>
+                  </ModalButtons>
                 </div>
               </>
             )}
