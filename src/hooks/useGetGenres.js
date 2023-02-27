@@ -1,4 +1,4 @@
-import * as API from 'api/filmotekaApi';
+import * as API from 'api/tmdbApi';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenres } from 'store/reducers/genresSlice';

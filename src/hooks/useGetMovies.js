@@ -1,4 +1,4 @@
-import * as API from 'api/filmotekaApi';
+import * as API from 'api/tmdbApi';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 

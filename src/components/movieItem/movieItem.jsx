@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Portal from '@mui/base/Portal';
-import { base_url, file_size } from 'api/filmotekaApi';
+import { base_url, file_size } from 'api/tmdbApi';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
 import Modal from 'components/modal/modal';

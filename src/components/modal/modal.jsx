@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import useModalClose from 'hooks/useModalClose';
-import { base_url, file_size_modal } from 'api/filmotekaApi';
+import { base_url, file_size_modal } from 'api/tmdbApi';
 import {
   addToWatchedList,
   removeFromWatchedList,

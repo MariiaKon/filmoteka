@@ -5,11 +5,9 @@ export const base_url = 'https://image.tmdb.org/t/p';
 export const file_size = '/w300';
 export const file_size_modal = '/w400';
 
-const API_KEY = '219747bddc830c6768a55001e81d80ed';
-
 const options = {
   params: {
-    api_key: API_KEY,
+    api_key: process.env.REACT_APP_TMDB_API_KEY,
     page: 1,
     query: '',
   },
