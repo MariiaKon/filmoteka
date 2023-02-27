@@ -13,7 +13,7 @@ function App() {
   const queueList = useSelector(state => state.libraryLists.queueList);
 
   return (
-    <BrowserRouter basename="/filmoteka">
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route
           path="/"
