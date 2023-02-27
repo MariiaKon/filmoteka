@@ -1,15 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import Logo from 'components/logo/logo';
-import { Nav, Navlink, Navbar } from './nav.styled';
+import { Nav, Navlink } from './nav.styled';
 
 function Navigation() {
   const location = useLocation();
 
   return (
     <>
-      <Navbar>
-        <Logo />
-      </Navbar>
+      <Logo />
+
       <Nav>
         <Navlink to="/">Home</Navlink>
         <Navlink
