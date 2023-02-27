@@ -15,7 +15,13 @@ export const Button = styled(Btn)`
     border-radius: 50%;
     border: none;
     background-color: ${varsCss.accentColor};
-    opacity: 0.7;
+    opacity: 0.5;
+
+    :focus,
+    :hover {
+      opacity: 0.8;
+      scale: 1.2;
+    }
 
     @media screen and (min-width: ${varsCss.desktop}px) {
       right: 50px;
