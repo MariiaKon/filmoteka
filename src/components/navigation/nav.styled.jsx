@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
-  grid-area: 1 / 2 / 2 / 3;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -34,10 +33,4 @@ export const Navlink = styled(NavLink)`
       margin-top: 2px;
     }
   }
-`;
-
-export const Navbar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
