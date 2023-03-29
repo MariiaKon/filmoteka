@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
+  grid-area: 1/2/1/3;
   display: flex;
   align-items: center;
   justify-content: flex-end;
