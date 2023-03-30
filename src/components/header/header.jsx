@@ -16,7 +16,7 @@ function Header({ error }) {
           <LibraryBtns />
         ) : (
           <>
-            {!location.pathname.includes('login') && <Searchbar />}
+            {!location.pathname.includes('auth') && <Searchbar />}
             {error && (
               <Error
                 children={

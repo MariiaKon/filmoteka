@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
+import { AuthContext } from 'context/authContext';
 import useModalClose from 'hooks/useModalClose';
 import { base_url, file_size_modal } from 'api/tmdbApi';
 import {
@@ -28,6 +29,7 @@ import {
 
 function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
   const dispatch = useDispatch();
+  const { user } = useContext(AuthContext);
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
 
@@ -73,10 +75,12 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                       ? `${base_url}${file_size_modal}${movie.poster_path}`
                       : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
                   }
-                  alt={movie.title}
+                  alt={movie.title ? movie.title : movie.name}
                 />
                 <div>
-                  <MovieTitle>{movie.title}</MovieTitle>
+                  <MovieTitle>
+                    {movie.title ? movie.title : movie.name}
+                  </MovieTitle>
                   <DescrBox>
                     <Descr>
                       <DescrItem>Vote / Votes:</DescrItem>
@@ -90,34 +94,44 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                         {`/ ${movie.vote_count}`}
                       </DescrItem>
                       <DescrItem>{movie.popularity}</DescrItem>
-                      <DescrItem>{movie.original_title}</DescrItem>
                       <DescrItem>
-                        <Genres ids={movie.genre_ids} isOpen={isOpen} />
+                        {movie.original_title
+                          ? movie.original_title
+                          : movie.original_name}
+                      </DescrItem>
+                      <DescrItem>
+                        {movie.genre_ids && (
+                          <Genres ids={movie.genre_ids} isOpen={isOpen} />
+                        )}
                       </DescrItem>
                     </Descr>
                   </DescrBox>
                   {movie.overview && <About>About</About>}
                   <Owerview>{movie.overview}</Owerview>
-                  <ModalButtons>
-                    <li>
-                      <Button
-                        id="watched"
-                        type="button"
-                        onClick={onClickHandler}
-                        children={!watched ? ['Add to ', 'watched'] : 'watched'}
-                        className={watched && 'active'}
-                      />
-                    </li>
-                    <li>
-                      <Button
-                        id="queue"
-                        type="button"
-                        onClick={onClickHandler}
-                        children={!queue ? ['Add to ', 'queue'] : 'queue'}
-                        className={queue && 'active'}
-                      />
-                    </li>
-                  </ModalButtons>
+                  {user && (
+                    <ModalButtons>
+                      <li>
+                        <Button
+                          id="watched"
+                          type="button"
+                          onClick={onClickHandler}
+                          children={
+                            !watched ? ['Add to ', 'watched'] : 'watched'
+                          }
+                          className={watched && 'active'}
+                        />
+                      </li>
+                      <li>
+                        <Button
+                          id="queue"
+                          type="button"
+                          onClick={onClickHandler}
+                          children={!queue ? ['Add to ', 'queue'] : 'queue'}
+                          className={queue && 'active'}
+                        />
+                      </li>
+                    </ModalButtons>
+                  )}
                 </div>
               </>
             )}
