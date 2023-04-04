@@ -1,5 +1,5 @@
 import { base_url, profile_size } from 'api/tmdbApi';
-import { Actor, Photo, Name } from './actorItem.styled';
+import { Actor, Photo, Name, Filmography } from './actorItem.styled';
 
 function ActorItem({ actor }) {
   return (
@@ -15,18 +15,21 @@ function ActorItem({ actor }) {
             alt={actor.name}
             loading="lazy"
           />
-          <div>
+          <Filmography>
             <Name>{actor.name}</Name>
             <ul>
               {actor.known_for.map(movie => {
                 return (
-                  <li>
-                    {movie.title} ({movie.release_date.slice(0, 4)})
+                  <li key={movie.id}>
+                    {movie.title}
+                    {' ('}
+                    {movie.release_date.slice(0, 4)}
+                    {')'}
                   </li>
                 );
               })}
             </ul>
-          </div>
+          </Filmography>
         </Actor>
       )}
     </>
