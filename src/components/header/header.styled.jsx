@@ -14,7 +14,12 @@ export const HeaderSection = styled.header`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(${props => (props.location ? l_mob : h_mob)});
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url(${props => (props.location ? l_mob : h_mob)});
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     padding: 45px 0 60px;
