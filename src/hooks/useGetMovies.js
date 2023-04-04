@@ -43,6 +43,8 @@ function useGetMovies(query, page, searchPath) {
               ...movie,
               release_date: movie.release_date
                 ? movie.release_date.slice(0, 4)
+                : movie.first_air_date
+                ? movie.first_air_date.slice(0, 4)
                 : '',
               vote_average: movie.vote_average.toFixed(1),
             };

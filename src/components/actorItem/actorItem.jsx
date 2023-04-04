@@ -21,9 +21,11 @@ function ActorItem({ actor }) {
               {actor.known_for.map(movie => {
                 return (
                   <li key={movie.id}>
-                    {movie.title}
+                    {movie.title ? movie.title : movie.name}
                     {' ('}
-                    {movie.release_date.slice(0, 4)}
+                    {movie.release_date
+                      ? movie.release_date?.slice(0, 4)
+                      : movie.first_air_date?.slice(0, 4)}
                     {')'}
                   </li>
                 );
