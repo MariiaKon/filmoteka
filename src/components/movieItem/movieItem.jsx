@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Portal from '@mui/base/Portal';
-import { base_url, file_size } from 'api/tmdbApi';
+import { base_url, poster_size } from 'api/tmdbApi';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
 import Modal from 'components/modal/modal';
@@ -34,13 +34,13 @@ function MovieItem({ movie }) {
           <Poster
             src={
               movie.poster_path
-                ? `${base_url}${file_size}${movie.poster_path}`
+                ? `${base_url}${poster_size}${movie.poster_path}`
                 : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
             }
-            alt={movie.title}
+            alt={movie.title ? movie.title : movie.name}
             loading="lazy"
           />
-          <Title>{movie.title}</Title>
+          <Title>{movie.title ? movie.title : movie.name}</Title>
           <Info>
             {movie.genre_ids && <Genres ids={movie.genre_ids} isOpen={false} />}
             {movie.release_date && <Release>{movie.release_date}</Release>}

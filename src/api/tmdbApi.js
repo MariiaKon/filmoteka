@@ -2,8 +2,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 export const base_url = 'https://image.tmdb.org/t/p';
-export const file_size = '/w300';
-export const file_size_modal = '/w400';
+export const poster_size = '/w342';
+export const poster_size_modal = '/w500';
+export const profile_size = '/w185';
 
 const API_KEY = '219747bddc830c6768a55001e81d80ed';
 

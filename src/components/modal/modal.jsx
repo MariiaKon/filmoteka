@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from 'context/authContext';
 import useModalClose from 'hooks/useModalClose';
-import { base_url, file_size_modal } from 'api/tmdbApi';
+import { base_url, poster_size_modal } from 'api/tmdbApi';
 import {
   addToWatchedList,
   removeFromWatchedList,
@@ -72,7 +72,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                 <MoviePoster
                   src={
                     movie.poster_path
-                      ? `${base_url}${file_size_modal}${movie.poster_path}`
+                      ? `${base_url}${poster_size_modal}${movie.poster_path}`
                       : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
                   }
                   alt={movie.title ? movie.title : movie.name}
