@@ -1,7 +1,7 @@
 import varsCss from 'components/commonCss/varsCss';
 import { useState } from 'react';
 import EmptyList from './emptyList/emptyList';
-import MovieList from 'components/movieList/movieList';
+import List from 'components/list/list';
 import Pages from 'components/pagination/pagination';
 
 function LibraryView({ movies }) {
@@ -29,11 +29,7 @@ function LibraryView({ movies }) {
 
   return (
     <>
-      {movies.length === 0 ? (
-        <EmptyList />
-      ) : (
-        <MovieList movies={moviesToShow} />
-      )}
+      {movies.length === 0 ? <EmptyList /> : <List items={moviesToShow} />}
       <Pages totalResults={movies.length} perPage={perPage} cb={handleClick} />
     </>
   );

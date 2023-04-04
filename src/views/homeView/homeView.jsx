@@ -1,6 +1,5 @@
 import { useOutletContext } from 'react-router-dom';
-import MovieList from 'components/movieList/movieList';
-import ActorsList from 'components/actorsList/actorsList';
+import List from 'components/list/list';
 import Pages from 'components/pagination/pagination';
 
 function HomeView() {
@@ -8,8 +7,7 @@ function HomeView() {
 
   return (
     <>
-      {movies && <MovieList movies={movies} />}
-      {actors && <ActorsList actors={actors} />}
+      <List items={movies.length !== 0 ? movies : actors} />
       {!error && <Pages totalResults={totalResults} perPage={20} />}
     </>
   );

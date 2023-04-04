@@ -1,7 +1,7 @@
 import varsCss from 'components/commonCss/varsCss';
 import styled from 'styled-components';
 
-export const List = styled.ul`
+export const ListGrid = styled.ul`
   display: grid;
   grid-template-columns: 280px;
   gap: 20px;
