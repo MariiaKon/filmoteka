@@ -14,7 +14,7 @@ function useGetGenres() {
       }
 
       API.getGenres().then(response => {
-        dispatch(setGenres(response.genres));
+        dispatch(setGenres(response));
       });
     }, [dispatch, genres.length]);
   } catch (error) {}
