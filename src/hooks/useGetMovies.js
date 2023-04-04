@@ -2,9 +2,10 @@ import * as API from 'api/tmdbApi';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function useGetMovies(query, page) {
+function useGetMovies(query, page, searchPath) {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
+  const [actors, setActors] = useState([]);
   const [error, setError] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
 
@@ -14,30 +15,50 @@ function useGetMovies(query, page) {
         return;
       }
 
-      API.getMovies(query, page).then(response => {
-        if (response === null || response.results.length === 0) {
-          setError(true);
-          setMovies(null);
-          return;
-        }
+      if (searchPath === 'person') {
+        API.getMovies(query, page, searchPath).then(response => {
+          if (response === null || response.results.length === 0) {
+            setError(true);
+            setActors([]);
+            setMovies([]);
+            return;
+          }
 
-        const results = response.results.map(movie => {
-          return {
-            ...movie,
-            release_date: movie.release_date
-              ? movie.release_date.slice(0, 4)
-              : '',
-            vote_average: movie.vote_average.toFixed(1),
-          };
+          setError(false);
+          setActors(prevState => [...response.results]);
+          setMovies([]);
+          setTotalResults(response.total_results);
         });
-        setError(false);
-        setMovies(prevState => [...results]);
-        setTotalResults(response.total_results);
-      });
-    }, [query, page, location.pathname]);
-  } catch (error) {}
+      } else {
+        API.getMovies(query, page, searchPath).then(response => {
+          if (response === null || response.results.length === 0) {
+            setError(true);
+            setMovies([]);
+            setActors([]);
+            return;
+          }
 
-  return { movies, error, totalResults };
+          const results = response.results.map(movie => {
+            return {
+              ...movie,
+              release_date: movie.release_date
+                ? movie.release_date.slice(0, 4)
+                : '',
+              vote_average: movie.vote_average.toFixed(1),
+            };
+          });
+          setError(false);
+          setMovies(prevState => [...results]);
+          setActors([]);
+          setTotalResults(response.total_results);
+        });
+      }
+    }, [query, page, searchPath, location.pathname]);
+  } catch (error) {
+    console.log(error);
+  }
+
+  return { movies, actors, error, totalResults };
 }
 
 export default useGetMovies;

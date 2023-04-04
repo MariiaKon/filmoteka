@@ -15,6 +15,7 @@ import { genresSlice } from './reducers/genresSlice';
 import { querySlice } from './reducers/querySlice';
 import { pageSlice } from './reducers/pageSlice';
 import { librarySlice } from './reducers/librarySlice';
+import { searchPathSlice } from './reducers/searchPathSlice';
 
 const persistConfigGenres = {
   key: 'genresList',
@@ -33,6 +34,7 @@ export const store = configureStore({
     ),
     [querySlice.name]: querySlice.reducer,
     [pageSlice.name]: pageSlice.reducer,
+    [searchPathSlice.name]: searchPathSlice.reducer,
     [librarySlice.name]: persistReducer(
       persistConfigLibrary,
       librarySlice.reducer

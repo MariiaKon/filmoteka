@@ -16,19 +16,27 @@ const options = {
 };
 
 export const getGenres = async () => {
-  const response = await axios.get('genre/movie/list', options);
-  return response.data;
+  const moviesGenres = await axios.get(`genre/movie/list`, options);
+  const seriesGenres = await axios.get(`genre/tv/list`, options);
+  const response = [...moviesGenres.data.genres, ...seriesGenres.data.genres];
+  return response;
 };
 
-export const getMovies = async (query, page) => {
+export const getMovies = async (query, page, searchPath) => {
   options.params.page = page;
   options.params.query = query;
 
   if (query === '') {
-    const response = await axios.get('trending/movie/day', options);
+    const response = await axios.get(
+      `trending/${searchPath ? searchPath : 'movie'}/day`,
+      options
+    );
+    return response.data;
+  } else {
+    const response = await axios.get(
+      `search/${searchPath ? searchPath : 'movie'}`,
+      options
+    );
     return response.data;
   }
-
-  const response = await axios.get('search/movie', options);
-  return response.data;
 };

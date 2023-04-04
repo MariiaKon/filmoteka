@@ -13,8 +13,13 @@ import { Button } from './layout.styled';
 function Layout() {
   const query = useSelector(state => state.query);
   const page = useSelector(state => state.page);
+  const searchPath = useSelector(state => state.searchPath);
   const [showUp, setShowUp] = useState(false);
-  const { error, movies, totalResults } = useGetMovies(query, page);
+  const { error, movies, actors, totalResults } = useGetMovies(
+    query,
+    page,
+    searchPath
+  );
 
   useSetQueryStr(query, page);
   useScrollUp(setShowUp);
@@ -30,6 +35,7 @@ function Layout() {
         <Outlet
           context={{
             movies,
+            actors,
             error,
             totalResults,
           }}
