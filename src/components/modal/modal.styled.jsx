@@ -13,6 +13,8 @@ export const Overlay = styled.div`
   background: rgba(0, 0, 0, 0.25);
   overflow-y: scroll;
   z-index: 1000;
+  scrollbar-color: rgba(255, 107, 1, 0.5) #f7f7f73b;
+  scrollbar-width: thin;
 `;
 
 export const ModalFrame = styled.div`
