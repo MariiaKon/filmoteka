@@ -9,6 +9,7 @@ const varsCss = {
   fontSizePrimary: '12px',
   fontSizeSecondary: '14px',
   transition: '250ms',
+  mobile: 320,
   tablet: 768,
   desktop: 1024,
 };

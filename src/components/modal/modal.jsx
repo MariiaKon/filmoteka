@@ -10,6 +10,7 @@ import {
   removeFromQueueList,
 } from 'store/reducers/librarySlice';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
+import { ReactComponent as PlayVideo } from 'assets/icons/play_video.svg';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
 import {
@@ -25,6 +26,7 @@ import {
   Owerview,
   ModalButtons,
   Button,
+  WatchTrailerBtn,
 } from './modal.styled';
 
 function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
@@ -61,6 +63,10 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
     }
   };
 
+  const watchTrailer = e => {
+    console.log('trailer');
+  };
+
   return (
     <>
       {isOpen && (
@@ -76,6 +82,11 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                       : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
                   }
                   alt={movie.title ? movie.title : movie.name}
+                />
+                <WatchTrailerBtn
+                  type="button"
+                  onClick={watchTrailer}
+                  children={<PlayVideo />}
                 />
                 <div>
                   <MovieTitle>

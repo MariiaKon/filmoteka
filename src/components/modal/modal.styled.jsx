@@ -146,3 +146,37 @@ export const Button = styled(Btn)`
     border: none;
   }
 `;
+
+export const WatchTrailerBtn = styled(Btn)`
+  position: absolute;
+  top: 220px;
+  left: calc((${varsCss.mobile}px - 20px * 2) / 2);
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  max-height: fit-content;
+  border: transparent;
+  opacity: 0;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    left: calc((${varsCss.tablet}px / 2 - 30px * 2) / 2);
+  }
+
+  @media screen and (min-width: ${varsCss.desktop}px) {
+    top: 280px;
+    left: calc((${varsCss.desktop}px / 2 - 30px * 2) / 2);
+    width: 120px;
+    height: 120px;
+  }
+
+  :hover,
+  :active,
+  :focus {
+    color: ${varsCss.accentColor};
+    opacity: 1;
+  }
+
+  img:hover + & {
+    opacity: 0.7;
+  }
+`;
