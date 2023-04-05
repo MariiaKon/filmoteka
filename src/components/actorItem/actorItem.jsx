@@ -2,6 +2,17 @@ import { base_url, profile_size } from 'api/tmdbApi';
 import { Actor, Photo, Name, Filmography } from './actorItem.styled';
 
 function ActorItem({ actor }) {
+  const movies = actor?.known_for?.map(movie => {
+    return {
+      ...movie,
+      date: movie.release_date
+        ? movie.release_date.slice(0, 4)
+        : movie.first_air_date
+        ? movie.first_air_date.slice(0, 4)
+        : '',
+    };
+  });
+
   return (
     <>
       {actor && (
@@ -18,15 +29,12 @@ function ActorItem({ actor }) {
           <Filmography>
             <Name>{actor.name}</Name>
             <ul>
-              {actor.known_for.map(movie => {
+              {movies?.map(movie => {
                 return (
                   <li key={movie.id}>
                     {movie.title ? movie.title : movie.name}
-                    {' ('}
-                    {movie.release_date
-                      ? movie.release_date?.slice(0, 4)
-                      : movie.first_air_date?.slice(0, 4)}
-                    {')'}
+
+                    {movie.date !== '' && ` (${movie?.date})`}
                   </li>
                 );
               })}

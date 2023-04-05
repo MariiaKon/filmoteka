@@ -10,6 +10,7 @@ export const Actor = styled.li`
 export const Photo = styled(Poster)`
   width: 40%;
   height: auto;
+  margin-bottom: 0;
 `;
 
 export const Name = styled(Title)`

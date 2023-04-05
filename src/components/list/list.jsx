@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux';
 import MovieItem from 'components/movieItem/movieItem';
 import ActorItem from 'components/actorItem/actorItem';
 import { ListGrid } from './list.styled';
 
 function List({ items }) {
+  const searchPath = useSelector(state => state.searchPath);
+
   return (
     <ListGrid>
-      {items[0]?.media_type === 'person'
+      {searchPath === 'person'
         ? items.map(item => {
             return <ActorItem key={item.id} actor={item} />;
           })
