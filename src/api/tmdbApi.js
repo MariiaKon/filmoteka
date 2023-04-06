@@ -41,3 +41,8 @@ export const getMovies = async (query, page, searchPath) => {
     return response.data;
   }
 };
+
+export const getTrailers = async (id, searchPath) => {
+  const response = await axios.get(`${searchPath}/${id}/videos`, options);
+  return response.data;
+};
