@@ -24,7 +24,14 @@ import {
   WatchTrailerBtn,
 } from './movieDetails.styled';
 
-function MovieDetails({ movie, isOpen, onClick, inWatched, inQueue }) {
+function MovieDetails({
+  movie,
+  isOpen,
+  onClick,
+  inWatched,
+  inQueue,
+  trailerSrc,
+}) {
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
   const [watched, setWatched] = useState(false);
@@ -68,13 +75,15 @@ function MovieDetails({ movie, isOpen, onClick, inWatched, inQueue }) {
             }
             alt={movie.title ? movie.title : movie.name}
           />
-          <WatchTrailerBtn
-            type="button"
-            onClick={() => {
-              onClick(true);
-            }}
-            children={<PlayVideo />}
-          />
+          {trailerSrc && (
+            <WatchTrailerBtn
+              type="button"
+              onClick={() => {
+                onClick(true);
+              }}
+              children={<PlayVideo />}
+            />
+          )}
           <div>
             <MovieTitle>{movie.title ? movie.title : movie.name}</MovieTitle>
             <DescrBox>
