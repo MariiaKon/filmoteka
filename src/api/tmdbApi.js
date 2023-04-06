@@ -46,3 +46,11 @@ export const getTrailers = async (id, searchPath) => {
   const response = await axios.get(`${searchPath}/${id}/videos`, options);
   return response.data;
 };
+
+export const getReviews = async (id, searchPath) => {
+  const response = await axios.get(
+    `${searchPath === '' ? 'movie' : searchPath}/${id}/reviews`,
+    options
+  );
+  return response.data;
+};

@@ -36,6 +36,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
                 inQueue={inQueue}
                 onClick={setVideo}
                 trailerSrc={trailerSrc}
+                searchPath={searchPath}
               />
             ) : (
               <Trailer movie={movie} trailerSrc={trailerSrc} />

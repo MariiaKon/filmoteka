@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from 'context/authContext';
+import useGetReviews from 'hooks/useGetReviews';
 import { base_url, poster_size_modal } from 'api/tmdbApi';
 import {
   addToWatchedList,
@@ -11,6 +12,7 @@ import {
 import { ReactComponent as PlayVideo } from 'assets/icons/play_video.svg';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
+import MovieReviews from 'components/movieReviews/movieReviews';
 import {
   MoviePoster,
   MovieTitle,
@@ -22,6 +24,8 @@ import {
   ModalButtons,
   Button,
   WatchTrailerBtn,
+  ReviewBtn,
+  ReviewBox,
 } from './movieDetails.styled';
 
 function MovieDetails({
@@ -31,11 +35,14 @@ function MovieDetails({
   inWatched,
   inQueue,
   trailerSrc,
+  searchPath,
 }) {
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
+  const [showReviews, setShowReviews] = useState(false);
+  const reviews = useGetReviews(movie.id, searchPath, showReviews);
 
   useEffect(() => {
     setWatched(inWatched);
@@ -136,6 +143,29 @@ function MovieDetails({
               </ModalButtons>
             )}
           </div>
+          <ReviewBox>
+            <ReviewBtn
+              type="button"
+              onClick={() => {
+                setShowReviews(prev => !prev);
+              }}
+              children={!showReviews ? 'Show reviews ...' : 'Hide reviews'}
+            />
+            {showReviews && (
+              <>
+                <MovieReviews reviews={reviews} />
+                {reviews.length > 5 && (
+                  <ReviewBtn
+                    type="button"
+                    onClick={() => {
+                      setShowReviews(false);
+                    }}
+                    children={'Hide reviews'}
+                  />
+                )}
+              </>
+            )}
+          </ReviewBox>
         </>
       )}
     </>

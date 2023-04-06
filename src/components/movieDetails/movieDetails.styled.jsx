@@ -64,6 +64,7 @@ export const About = styled.h3`
 
 export const Owerview = styled.p`
   line-height: 20px;
+  text-align: justify;
 `;
 
 export const ModalButtons = styled(ButtonBar)`
@@ -133,5 +134,24 @@ export const WatchTrailerBtn = styled(Btn)`
 
   img:hover + & {
     opacity: 0.7;
+  }
+`;
+
+export const ReviewBtn = styled(Btn)`
+  color: ${varsCss.textSecondary};
+  font-size: ${varsCss.fontSizeSecondary};
+  font-weight: 600;
+  border: none;
+  text-transform: none;
+
+  :hover,
+  :active {
+    color: ${varsCss.accentColor};
+  }
+`;
+
+export const ReviewBox = styled.div`
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    grid-area: 2 / 1 / 3 / 3;
   }
 `;
