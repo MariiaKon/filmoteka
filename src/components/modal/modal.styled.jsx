@@ -48,4 +48,12 @@ export const CloseBtn = styled(Btn)`
   top: 0;
   right: 0;
   border: none;
+  color: ${varsCss.textColor};
+
+  :hover,
+  :focus,
+  :active {
+    color: ${varsCss.accentColor};
+    scale: 1.3;
+  }
 `;

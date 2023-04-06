@@ -92,6 +92,7 @@ export const Button = styled(Btn)`
 
   :hover {
     box-shadow: 0px 0px 5px ${varsCss.accentColor};
+    scale: 1.1;
   }
 
   &.active {

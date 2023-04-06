@@ -8,7 +8,7 @@ export const Video = styled.iframe`
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     position: static;
-    grid-area: 2 / 1 / 3 / 3;
+    grid-area: 1 / 1 / 2 / 3;
   }
 
   :hover {
