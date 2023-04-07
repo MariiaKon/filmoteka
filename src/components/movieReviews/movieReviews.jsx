@@ -3,13 +3,14 @@ import { ReviewList, ReviewItem, ShowMoreBtn } from './movieReviews.styled';
 
 function MovieReviews({ reviews }) {
   const [showFullReview, setShowFullReview] = useState({ show: false, id: '' });
+  const contentLength = 50;
 
   const showCropContent = str => {
-    let content = Array.from(str);
+    let content = str.split(' ');
 
-    if (content.length > 300) {
-      content.length = 300;
-      return content.join('');
+    if (content.length > contentLength) {
+      content.length = contentLength;
+      return content.join(' ');
     }
     return str;
   };
@@ -25,15 +26,16 @@ function MovieReviews({ reviews }) {
                 ? review.content
                 : showCropContent(review.content)}
             </p>
-            {showFullReview.id !== review.id && (
-              <ShowMoreBtn
-                type="button"
-                onClick={() => {
-                  setShowFullReview({ show: true, id: review.id });
-                }}
-                children={'show more ...'}
-              />
-            )}
+            {showFullReview.id !== review.id &&
+              review.content.split(' ').length > contentLength && (
+                <ShowMoreBtn
+                  type="button"
+                  onClick={() => {
+                    setShowFullReview({ show: true, id: review.id });
+                  }}
+                  children={'show more ...'}
+                />
+              )}
           </ReviewItem>
         );
       })}
