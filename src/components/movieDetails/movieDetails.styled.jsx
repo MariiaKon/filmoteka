@@ -112,9 +112,13 @@ export const WatchTrailerBtn = styled(Btn)`
   height: 80px;
   max-height: fit-content;
   border: transparent;
-  opacity: 0;
+
+  @media screen and (max-width: ${varsCss.tablet}px) {
+    opacity: 0.7;
+  }
 
   @media screen and (min-width: ${varsCss.tablet}px) {
+    opacity: 0;
     left: calc((${varsCss.tablet}px / 2 - 30px * 2) / 2);
   }
 
