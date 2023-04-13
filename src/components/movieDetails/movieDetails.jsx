@@ -24,6 +24,7 @@ import {
   ModalButtons,
   Button,
   WatchTrailerBtn,
+  TrailerFlag,
   ReviewBtn,
   ReviewBox,
 } from './movieDetails.styled';
@@ -86,14 +87,19 @@ function MovieDetails({
             }
             alt={movie.title ? movie.title : movie.name}
           />
-          {trailerSrc && (
-            <WatchTrailerBtn
-              type="button"
-              onClick={() => {
-                onClick(true);
-              }}
-              children={<PlayVideo />}
-            />
+          {trailerSrc ? (
+            <>
+              <TrailerFlag>Trailer</TrailerFlag>
+              <WatchTrailerBtn
+                type="button"
+                onClick={() => {
+                  onClick(true);
+                }}
+                children={<PlayVideo />}
+              />
+            </>
+          ) : (
+            <TrailerFlag>No trailer</TrailerFlag>
           )}
           <div>
             <MovieTitle>{movie.title ? movie.title : movie.name}</MovieTitle>

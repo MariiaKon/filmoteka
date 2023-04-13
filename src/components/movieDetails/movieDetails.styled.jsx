@@ -159,3 +159,20 @@ export const ReviewBox = styled.div`
     grid-area: 2 / 1 / 3 / 3;
   }
 `;
+
+export const TrailerFlag = styled.div`
+  position: absolute;
+  top: 48px;
+  left: 20px;
+  width: fit-content;
+  background: ${varsCss.accentColor};
+  color: ${varsCss.primaryColor};
+  padding: 6px 12px;
+  border-radius: 5px 0px 5px 0px;
+  text-transform: uppercase;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    top: 42px;
+    left: 30px;
+  }
+`;
