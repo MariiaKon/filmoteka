@@ -136,7 +136,7 @@ export const WatchTrailerBtn = styled(Btn)`
     opacity: 1;
   }
 
-  img:hover + & {
+  img:hover ~ & {
     opacity: 0.7;
   }
 `;
