@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setQuery } from 'store/reducers/querySlice';
 import { setPage } from 'store/reducers/pageSlice';
@@ -15,15 +16,19 @@ import {
 
 function Searchbar() {
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
   const searchPath = useSelector(store => store.searchPath);
+  const query = useSelector(store => store.query);
+
+  useEffect(() => {
+    setValue(query);
+  }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(setQuery(e.target.elements.searchbar.value.trim()));
     dispatch(setPage(1));
-
-    // e.target.elements.searchbar.value = '';
   };
 
   const onChange = e => {
@@ -39,6 +44,10 @@ function Searchbar() {
         name="searchbar"
         autoComplete="off"
         placeholder="Search movie"
+        value={value}
+        onChange={e => {
+          setValue(e.currentTarget.value);
+        }}
       />
       <SearchPathBox>
         <Label>
