@@ -42,7 +42,11 @@ function MovieDetails({
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
-  const reviews = useGetReviews(movie.id, searchPath, showReviews);
+  const { reviews, totalResults } = useGetReviews(
+    movie.id,
+    searchPath,
+    showReviews
+  );
 
   useEffect(() => {
     setWatched(inWatched);
@@ -153,7 +157,11 @@ function MovieDetails({
             />
             {showReviews && (
               <>
-                <MovieReviews reviews={reviews} />
+                {totalResults ? (
+                  <MovieReviews reviews={reviews} />
+                ) : (
+                  <Owerview>No reviews for now</Owerview>
+                )}
                 {reviews.length > 5 && (
                   <ReviewBtn
                     type="button"
