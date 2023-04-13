@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function useSetQueryStr(query, page) {
   const navigate = useNavigate();
   const location = useLocation();
+  const searchPath = useSelector(store => store.searchPath);
   const [isInLibrary, setIsInLibrary] = useState(false);
 
   if (isInLibrary) {
@@ -18,9 +20,15 @@ function useSetQueryStr(query, page) {
     isInLibrary
       ? navigate(`${location.pathname}`)
       : query === ''
-      ? navigate(`?trendings&page=${page}`)
-      : navigate(`?query=${query.toLowerCase()}&page=${page}`);
-  }, [query, page, navigate, isInLibrary, location.pathname]);
+      ? navigate(
+          `?${searchPath === '' ? 'movie' : searchPath}&trendings&page=${page}`
+        )
+      : navigate(
+          `?${
+            searchPath === '' ? 'movie' : searchPath
+          }&query=${query.toLowerCase()}&page=${page}`
+        );
+  }, [query, page, navigate, isInLibrary, location.pathname, searchPath]);
 }
 
 export default useSetQueryStr;
