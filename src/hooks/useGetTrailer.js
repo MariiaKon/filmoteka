@@ -19,7 +19,7 @@ function useGetTrailer(id, searchPath) {
           return (trailer = null);
         }
 
-        if (response.results.length <= 1) {
+        if (response.results.length === 1) {
           return (trailer = response.results[0]);
         }
 
