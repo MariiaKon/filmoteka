@@ -57,7 +57,7 @@ function useGetMovies(query, page, searchPath) {
       }
     }, [query, page, searchPath, location.pathname]);
   } catch (error) {
-    console.log(error);
+    setError(true);
   }
 
   return { movies, actors, error, totalResults };

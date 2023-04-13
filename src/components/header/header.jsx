@@ -1,30 +1,23 @@
 import { useLocation } from 'react-router-dom';
 import Navigation from 'components/navigation/nav';
 import Searchbar from 'components/searchbar/searchbar';
-import Error from 'components/error/error';
 import LibraryBtns from 'components/buttonbar/buttonbar';
 import { HeaderSection, Container } from './header.styled';
 
-function Header({ error }) {
+function Header() {
   const location = useLocation();
 
   return (
     <HeaderSection location={location.pathname.includes('library')}>
       <Container>
         <Navigation />
+
         {location.pathname.includes('library') ? (
           <LibraryBtns />
+        ) : !location.pathname.includes('auth') ? (
+          <Searchbar />
         ) : (
-          <>
-            {!location.pathname.includes('auth') && <Searchbar />}
-            {error && (
-              <Error
-                children={
-                  'Search result not successful. Enter the correct movie name and try again.'
-                }
-              />
-            )}
-          </>
+          false
         )}
       </Container>
     </HeaderSection>
