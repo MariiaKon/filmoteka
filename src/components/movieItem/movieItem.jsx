@@ -60,7 +60,7 @@ function MovieItem({ movie }) {
           <Modal
             movie={movieInfo}
             isOpen={isOpen}
-            onClick={closeModal}
+            onModalClose={closeModal}
             inWatched={inWatched}
             inQueue={inQueue}
           />

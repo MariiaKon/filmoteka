@@ -7,12 +7,17 @@ import MovieDetails from 'components/movieDetails/movieDetails';
 import Trailer from 'components/trailer/trailer';
 import { Overlay, ModalFrame, CloseBtn } from './modal.styled';
 
-function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
+function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
   const [video, setVideo] = useState(false);
   const searchPath = useSelector(state => state.searchPath);
   const trailerSrc = useGetTrailer(movie?.id, searchPath);
 
-  useModalClose(onClick);
+  const closeModalHandler = () => {
+    onModalClose();
+    setVideo(false);
+  };
+
+  useModalClose(closeModalHandler);
 
   return (
     <>
@@ -21,10 +26,7 @@ function Modal({ movie, isOpen, onClick, inWatched, inQueue }) {
           <ModalFrame>
             <CloseBtn
               type="button"
-              onClick={() => {
-                onClick();
-                setVideo(false);
-              }}
+              onClick={closeModalHandler}
               children={<CrossSvg />}
             />
 

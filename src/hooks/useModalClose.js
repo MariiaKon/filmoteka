@@ -1,19 +1,19 @@
 import { useEffect } from 'react';
 
-function useModalClose(onClick) {
+function useModalClose(closeModalHandler) {
   useEffect(() => {
-    const closeOnEsc = e => (e.key === 'Escape' ? onClick() : null);
+    const closeOnEsc = e => (e.key === 'Escape' ? closeModalHandler() : null);
     document.body.addEventListener('keydown', closeOnEsc);
 
     const closeOnOverlayClick = e =>
-      e.target.id === 'overlay' ? onClick() : null;
+      e.target.id === 'overlay' ? closeModalHandler() : null;
     document.body.addEventListener('click', closeOnOverlayClick);
 
     return () => {
       document.body.removeEventListener('keydown', closeOnEsc);
       document.body.removeEventListener('click', closeOnOverlayClick);
     };
-  }, [onClick]);
+  }, [closeModalHandler]);
 }
 
 export default useModalClose;
