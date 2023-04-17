@@ -12,30 +12,32 @@ function useGetTrailer(id, searchPath) {
 
       const path = searchPath === '' ? 'movie' : searchPath;
 
-      API.getTrailers(id, path).then(response => {
-        let trailer = null;
+      API.getTrailers(id, path)
+        .then(response => {
+          let trailer = null;
 
-        if (response.results.length === 0) {
-          return (trailer = null);
-        }
+          if (response.results.length === 0) {
+            return (trailer = null);
+          } else if (response.results.length === 1) {
+            return (trailer = response.results[0]);
+          } else if (!trailer) {
+            return (trailer = response.results.find(
+              video =>
+                video.official === true &&
+                video.name.includes('Official') &&
+                video.type === 'Trailer'
+            ));
+          }
 
-        if (response.results.length === 1) {
-          return (trailer = response.results[0]);
-        }
-
-        trailer = response.results.find(
-          video =>
-            video.official === true &&
-            video.name.includes('Official') &&
-            video.type === 'Trailer'
-        );
-
-        if (trailer) {
-          setTrailerSrc(
-            `https://www.youtube.com/embed/${trailer.key}?enablejsapi=1`
-          );
-        }
-      });
+          return trailer;
+        })
+        .then(trailer => {
+          if (trailer) {
+            setTrailerSrc(
+              `https://www.youtube.com/embed/${trailer.key}?enablejsapi=1`
+            );
+          }
+        });
     }, [id, searchPath]);
   } catch (error) {}
 
