@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const Movie = styled.li`
   width: 280px;
   height: 443px;
+  cursor: pointer;
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     width: 294px;
@@ -12,7 +13,14 @@ export const Movie = styled.li`
 
   @media screen and (min-width: ${varsCss.desktop}px) {
     width: 274px;
-  } ;
+  }
+
+  :hover,
+  :focus {
+    img {
+      transform: scale(1.02);
+    }
+  }
 `;
 
 export const Poster = styled.img`
@@ -21,6 +29,7 @@ export const Poster = styled.img`
   background: ${varsCss.secondaryColor};
   border-radius: 5px;
   margin-bottom: 10px;
+  transition: ${varsCss.transition};
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     width: 294px;
