@@ -58,3 +58,7 @@ li {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #ff6b01;
 }
+
+.isModalOpen {
+  overflow: hidden;
+}

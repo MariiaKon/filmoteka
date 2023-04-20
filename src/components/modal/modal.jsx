@@ -13,6 +13,7 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
   const trailerSrc = useGetTrailer(movie?.id, searchPath);
 
   const closeModalHandler = () => {
+    document.body.classList.remove('isModalOpen');
     onModalClose();
     setVideo(false);
   };
@@ -22,8 +23,8 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
   return (
     <>
       {isOpen && (
-        <Overlay id="overlay">
-          <ModalFrame>
+        <Overlay id="overlay" video={video}>
+          <ModalFrame video={video}>
             <CloseBtn
               type="button"
               onClick={closeModalHandler}
@@ -41,7 +42,7 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
                 searchPath={searchPath}
               />
             ) : (
-              <Trailer movie={movie} trailerSrc={trailerSrc} />
+              <Trailer trailerSrc={trailerSrc} />
             )}
           </ModalFrame>
         </Overlay>

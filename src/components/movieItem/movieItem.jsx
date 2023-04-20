@@ -18,6 +18,7 @@ function MovieItem({ movie }) {
   const location = useLocation();
 
   const openModal = () => {
+    document.body.classList.add('isModalOpen');
     setIsOpen(true);
     setMovieInfo(movie);
   };

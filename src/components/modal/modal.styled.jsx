@@ -8,11 +8,17 @@ export const Overlay = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.25);
-  overflow-y: scroll;
+  overflow-y: ${props => (props.video ? 'clip' : 'scroll')};
   z-index: 1000;
   scrollbar-color: rgba(255, 107, 1, 0.5) #f7f7f73b;
   scrollbar-width: thin;
+
+  @media screen and (orientation: landscape) {
+    overflow-y: scroll;
+  }
 `;
 
 export const ModalFrame = styled.div`
@@ -27,11 +33,16 @@ export const ModalFrame = styled.div`
   padding: 48px 20px 40px;
   margin: 20px auto;
 
+  @media screen and (orientation: landscape) {
+    width: ${props => props.video && '80%'};
+    grid-template-columns: ${props => props.video && '1fr'};
+  }
+
   @media screen and (min-width: ${varsCss.tablet}px) {
     grid-template-columns: repeat(2, 264px);
     gap: 32px;
     width: 618px;
-    margin: 230px auto auto;
+    margin: 230px auto;
     padding: 42px 30px 40px;
   }
 
