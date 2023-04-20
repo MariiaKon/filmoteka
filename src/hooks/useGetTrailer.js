@@ -1,7 +1,9 @@
 import * as API from 'api/tmdbApi';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-function useGetTrailer(id, searchPath) {
+function useGetTrailer(id) {
+  const searchPath = useSelector(state => state.searchPath);
   const [trailerSrc, setTrailerSrc] = useState('');
 
   try {

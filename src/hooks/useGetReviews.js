@@ -1,7 +1,9 @@
 import * as API from 'api/tmdbApi';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-function useGetReviews(id, searchPath, showReviews) {
+function useGetReviews(id, showReviews) {
+  const searchPath = useSelector(state => state.searchPath);
   const [reviews, setReviews] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [loading, setLoading] = useState(true);

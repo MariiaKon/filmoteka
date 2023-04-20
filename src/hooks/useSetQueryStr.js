@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-function useSetQueryStr(query, page) {
+function useSetQueryStr() {
   const navigate = useNavigate();
   const location = useLocation();
+  const query = useSelector(state => state.query);
+  const page = useSelector(state => state.page);
   const searchPath = useSelector(store => store.searchPath);
   const [isInLibrary, setIsInLibrary] = useState(false);
 

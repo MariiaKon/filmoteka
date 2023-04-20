@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import useGetTrailer from 'hooks/useGetTrailer';
 import useModalClose from 'hooks/useModalClose';
 import { ReactComponent as CrossSvg } from 'assets/icons/cross.svg';
@@ -9,8 +8,7 @@ import { Overlay, ModalFrame, CloseBtn } from './modal.styled';
 
 function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
   const [video, setVideo] = useState(false);
-  const searchPath = useSelector(state => state.searchPath);
-  const trailerSrc = useGetTrailer(movie?.id, searchPath);
+  const trailerSrc = useGetTrailer(movie?.id);
 
   const closeModalHandler = () => {
     document.body.classList.remove('isModalOpen');
@@ -39,7 +37,6 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
                 inQueue={inQueue}
                 onClick={setVideo}
                 trailerSrc={trailerSrc}
-                searchPath={searchPath}
               />
             ) : (
               <Trailer trailerSrc={trailerSrc} />

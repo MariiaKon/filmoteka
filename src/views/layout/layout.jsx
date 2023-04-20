@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { ReactComponent as ArrowUp } from 'assets/icons/arrow_up.svg';
 import useGetMovies from 'hooks/useGetMovies';
 import useSetQueryStr from 'hooks/useSetQueryStr';
@@ -13,17 +12,9 @@ import { Button } from './layout.styled';
 
 function Layout() {
   const location = useLocation();
-  const query = useSelector(state => state.query);
-  const page = useSelector(state => state.page);
-  const searchPath = useSelector(state => state.searchPath);
   const [showUp, setShowUp] = useState(false);
-  const { error, movies, actors, totalResults } = useGetMovies(
-    query,
-    page,
-    searchPath
-  );
-
-  useSetQueryStr(query, page);
+  const { error, movies, actors, totalResults, searchPath } = useGetMovies();
+  useSetQueryStr();
   useScrollUp(setShowUp);
 
   const onUpClick = () => {
@@ -38,11 +29,12 @@ function Layout() {
         !location.pathname.includes('library') &&
         !location.pathname.includes('auth') ? (
           <Error
-            children={
+            children={[
+              'Search result not successful. ',
               searchPath !== 'person'
-                ? 'Search result not successful. Enter the correct movie name and try again.'
-                : 'Search result not successful. Try something else.'
-            }
+                ? 'Enter the correct movie name and try again.'
+                : 'Try something else.',
+            ]}
           />
         ) : (
           <Outlet

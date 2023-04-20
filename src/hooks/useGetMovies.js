@@ -1,9 +1,13 @@
 import * as API from 'api/tmdbApi';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-function useGetMovies(query, page, searchPath) {
+function useGetMovies() {
   const location = useLocation();
+  const query = useSelector(state => state.query);
+  const page = useSelector(state => state.page);
+  const searchPath = useSelector(state => state.searchPath);
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
   const [error, setError] = useState(false);
@@ -60,7 +64,7 @@ function useGetMovies(query, page, searchPath) {
     setError(true);
   }
 
-  return { movies, actors, error, totalResults };
+  return { movies, actors, error, totalResults, searchPath };
 }
 
 export default useGetMovies;

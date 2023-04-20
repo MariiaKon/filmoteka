@@ -37,7 +37,6 @@ function MovieDetails({
   inWatched,
   inQueue,
   trailerSrc,
-  searchPath,
 }) {
   const dispatch = useDispatch();
   const { user } = useContext(AuthContext);
@@ -46,7 +45,6 @@ function MovieDetails({
   const [showReviews, setShowReviews] = useState(false);
   const { reviews, totalResults, loading } = useGetReviews(
     movie.id,
-    searchPath,
     showReviews
   );
 
