@@ -20,14 +20,8 @@ function useSetQueryStr(query, page) {
     isInLibrary
       ? navigate(`${location.pathname}`)
       : query === ''
-      ? navigate(
-          `?${searchPath === '' ? 'movie' : searchPath}&trendings&page=${page}`
-        )
-      : navigate(
-          `?${
-            searchPath === '' ? 'movie' : searchPath
-          }&query=${query.toLowerCase()}&page=${page}`
-        );
+      ? navigate(`?${searchPath}&trendings&page=${page}`)
+      : navigate(`?${searchPath}&query=${query.toLowerCase()}&page=${page}`);
   }, [query, page, navigate, isInLibrary, location.pathname, searchPath]);
 }
 

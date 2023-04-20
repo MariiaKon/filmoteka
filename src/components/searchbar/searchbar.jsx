@@ -57,9 +57,7 @@ function Searchbar() {
             value="movie"
             name="searchGroup"
             onChange={onChange}
-            checked={
-              searchPath === '' ? true : searchPath === 'movie' ? true : false
-            }
+            checked={searchPath === 'movie'}
           />
           <CustomRadio />
         </Label>
@@ -70,7 +68,7 @@ function Searchbar() {
             value="tv"
             name="searchGroup"
             onChange={onChange}
-            checked={searchPath === 'tv' ? true : false}
+            checked={searchPath === 'tv'}
           />
           <CustomRadio />
         </Label>
@@ -81,7 +79,7 @@ function Searchbar() {
             value="person"
             name="searchGroup"
             onChange={onChange}
-            checked={searchPath === 'person' ? true : false}
+            checked={searchPath === 'person'}
           />
           <CustomRadio />
         </Label>

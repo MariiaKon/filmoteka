@@ -28,16 +28,10 @@ export const getMovies = async (query, page, searchPath) => {
   options.params.query = query;
 
   if (query === '') {
-    const response = await axios.get(
-      `trending/${searchPath ? searchPath : 'movie'}/day`,
-      options
-    );
+    const response = await axios.get(`trending/${searchPath}/day`, options);
     return response.data;
   } else {
-    const response = await axios.get(
-      `search/${searchPath ? searchPath : 'movie'}`,
-      options
-    );
+    const response = await axios.get(`search/${searchPath}`, options);
     return response.data;
   }
 };
@@ -48,9 +42,6 @@ export const getTrailers = async (id, searchPath) => {
 };
 
 export const getReviews = async (id, searchPath) => {
-  const response = await axios.get(
-    `${searchPath === '' ? 'movie' : searchPath}/${id}/reviews`,
-    options
-  );
+  const response = await axios.get(`${searchPath}/${id}/reviews`, options);
   return response.data;
 };

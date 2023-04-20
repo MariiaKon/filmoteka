@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const searchPathSlice = createSlice({
   name: 'searchPath',
-  initialState: '',
+  initialState: 'movie',
   reducers: {
     setSearchPath: (state, { payload }) => {
       return (state = payload);

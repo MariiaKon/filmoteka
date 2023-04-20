@@ -11,7 +11,7 @@ function Logo() {
   const handleClick = () => {
     dispatch(setQuery(''));
     dispatch(setPage(1));
-    dispatch(setSearchPath(''));
+    dispatch(setSearchPath('movie'));
   };
 
   return (
