@@ -10,6 +10,7 @@ import {
   removeFromQueueList,
 } from 'store/reducers/librarySlice';
 import { ReactComponent as PlayVideo } from 'assets/icons/play_video.svg';
+import Loader from 'components/loader/loader';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
 import MovieReviews from 'components/movieReviews/movieReviews';
@@ -43,7 +44,7 @@ function MovieDetails({
   const [watched, setWatched] = useState(false);
   const [queue, setQueue] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
-  const { reviews, totalResults } = useGetReviews(
+  const { reviews, totalResults, loading } = useGetReviews(
     movie.id,
     searchPath,
     showReviews
@@ -163,7 +164,9 @@ function MovieDetails({
             />
             {showReviews && (
               <>
-                {totalResults ? (
+                {loading ? (
+                  <Loader />
+                ) : totalResults ? (
                   <MovieReviews reviews={reviews} />
                 ) : (
                   <Owerview>No reviews for now</Owerview>
