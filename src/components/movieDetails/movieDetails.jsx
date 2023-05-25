@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from 'context/authContext';
 import useGetReviews from 'hooks/useGetReviews';
-import { base_url, poster_size_modal } from 'api/tmdbApi';
+import { base_url, poster_size_m, poster_size_l } from 'api/tmdbApi';
 import {
   addToWatchedList,
   removeFromWatchedList,
@@ -78,14 +78,26 @@ function MovieDetails({
     <>
       {movie && (
         <>
-          <MoviePoster
-            src={
-              movie.poster_path
-                ? `${base_url}${poster_size_modal}${movie.poster_path}`
-                : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
-            }
-            alt={movie.title ? movie.title : movie.name}
-          />
+          {movie.poster_path ? (
+            <picture>
+              <source
+                srcSet={`${base_url}${poster_size_m}${movie.poster_path}, ${base_url}${poster_size_l}${movie.poster_path} 2x`}
+                type="image/jpg"
+              />
+              <MoviePoster
+                src={`${base_url}${poster_size_m}${movie.poster_path}`}
+                alt={movie.title ? movie.title : movie.name}
+                loading="lazy"
+              />
+            </picture>
+          ) : (
+            <MoviePoster
+              src={`${process.env.PUBLIC_URL + '/no_poster.webp'}`}
+              alt={movie.title ? movie.title : movie.name}
+              loading="lazy"
+            />
+          )}
+
           {trailerSrc ? (
             <>
               <TrailerFlag>Trailer</TrailerFlag>
