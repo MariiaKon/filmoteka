@@ -16,7 +16,7 @@ function Pages({ totalResults, perPage, cb }) {
   const initTotalPages = useRef(totalPages);
   const isMobile = document.documentElement.clientWidth < `${varsCss.tablet}`;
 
-  const handleClick = e => {
+  const handlerClick = e => {
     window.scrollTo(0, 200);
 
     if (location.pathname.includes('library')) {
@@ -51,7 +51,7 @@ function Pages({ totalResults, perPage, cb }) {
         previousLinkClassName={'arrows'}
         nextLinkClassName={'arrows'}
         disabledLinkClassName={'disabled'}
-        onPageChange={handleClick}
+        onPageChange={handlerClick}
         forcePage={
           location.pathname.includes('library') ? currentPage : page - 1
         }

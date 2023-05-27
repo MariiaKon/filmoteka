@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 
 function useScrollUp(setState) {
   useEffect(() => {
-    const handleScroll = () => {
+    const handlerScroll = () => {
       document.documentElement.clientHeight < window.scrollY
         ? setState(true)
         : setState(false);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handlerScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handlerScroll);
     };
   });
 }

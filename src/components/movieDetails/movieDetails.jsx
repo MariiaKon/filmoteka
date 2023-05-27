@@ -53,7 +53,7 @@ function MovieDetails({
     setQueue(inQueue);
   }, [inWatched, inQueue]);
 
-  const onClickHandler = e => {
+  const handlerClick = e => {
     switch (e.target.id) {
       case 'watched':
         setWatched(prevState => !prevState);
@@ -147,7 +147,7 @@ function MovieDetails({
                   <Button
                     id="watched"
                     type="button"
-                    onClick={onClickHandler}
+                    onClick={handlerClick}
                     children={!watched ? ['Add to ', 'watched'] : 'watched'}
                     className={watched && 'active'}
                   />
@@ -156,7 +156,7 @@ function MovieDetails({
                   <Button
                     id="queue"
                     type="button"
-                    onClick={onClickHandler}
+                    onClick={handlerClick}
                     children={!queue ? ['Add to ', 'queue'] : 'queue'}
                     className={queue && 'active'}
                   />
