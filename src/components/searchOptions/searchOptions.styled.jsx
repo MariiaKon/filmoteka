@@ -1,7 +1,8 @@
 import varsCss from 'components/commonCss/varsCss';
+import { Button } from 'components/movieDetails/movieDetails.styled';
 import styled from 'styled-components';
 
-export const SorterBox = styled.div`
+export const SearchOptionsBox = styled.div`
   position: absolute;
   top: 26px;
   display: flex;
@@ -11,17 +12,22 @@ export const SorterBox = styled.div`
   color: ${varsCss.textColor};
   border-radius: 2px;
   box-shadow: 0 2px 4px 0 ${varsCss.textSecondary};
-  padding: 2px;
+  padding: 4px;
   z-index: 100;
+`;
+
+export const OptionsList = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
+  padding: 2px 4px;
   color: ${varsCss.textColor};
   font-size: ${varsCss.fontSizePrimary};
   line-height: 16px;
-  padding: 2px 4px;
   cursor: pointer;
 
   :hover {
@@ -34,3 +40,17 @@ export const Label = styled.label`
     background: ${varsCss.accentColor};
   }
 `;
+
+export const SubmitBtn = styled(Button)`
+  margin-top: 16px;
+  width: 100%;
+  height: 40px;
+
+  :hover,
+  :focus {
+    background: ${varsCss.accentColor};
+    color: ${varsCss.primaryColor};
+    border: 1px solid transparent;
+    scale: none;
+  }
+`

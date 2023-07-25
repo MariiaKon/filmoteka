@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { SorterBox } from 'components/sorter/sorter.styled';
 import { Radio } from 'components/searchbar/searchbar.styled';
-import { GenresList, Label, CustomCheckbox } from './filter.styled';
+import { SearchOptionsBox, OptionsList, Label, SubmitBtn } from './searchOptions.styled';
 import { setSorter } from 'store/reducers/sorterSlice';
 
 function Filter({ onFilterHide }) {
@@ -26,9 +25,9 @@ function Filter({ onFilterHide }) {
   };
 
   return (
-    <SorterBox>
-      <GenresList>
-        Genres:
+    <SearchOptionsBox>
+      Genres:
+      <OptionsList>
         {genres &&
           [...genres]
             .sort((a, b) => {
@@ -42,18 +41,18 @@ function Filter({ onFilterHide }) {
                     onClick={handlerClick}
                     value={genre.name.toLowerCase()}
                   />
-                  <CustomCheckbox /> {genre.name}
+                  {genre.name}
                 </Label>
               );
             })}
-      </GenresList>
-      <input
-        type="submit"
-        value="Filter"
+      </OptionsList>
+      <SubmitBtn
+        type="button"
+        children="Filter"
         name="with_genres"
         onClick={handlerSubmit}
       />
-    </SorterBox>
+    </SearchOptionsBox>
   );
 }
 

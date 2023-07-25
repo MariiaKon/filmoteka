@@ -17,8 +17,8 @@ import {
   FilterIcon,
   IconDescr,
 } from './searchbar.styled';
-import Sorter from 'components/sorter/sorter';
-import Filter from 'components/filter/filter';
+import Sorter from 'components/searchOptions/sorter';
+import Filter from 'components/searchOptions/filter';
 
 function Searchbar() {
   const dispatch = useDispatch();
@@ -45,10 +45,20 @@ function Searchbar() {
     switch (e.target.value) {
       case 'sort':
         setShowSortList(prev => !prev);
+
+        if (showFilterList) {
+          setShowFilterList(prev => !prev);
+        }
+
         break;
 
       case 'filter':
         setShowFilterList(prev => !prev);
+
+        if (showSortList) {
+          setShowSortList(prev => !prev);
+        }
+
         break;
 
       default:
