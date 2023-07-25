@@ -8,6 +8,7 @@ function useGetMovies() {
   const query = useSelector(state => state.query);
   const page = useSelector(state => state.page);
   const searchPath = useSelector(state => state.searchPath);
+  const sorter = useSelector(state => state.sorter);
   const [movies, setMovies] = useState([]);
   const [actors, setActors] = useState([]);
   const [error, setError] = useState(false);
@@ -20,7 +21,7 @@ function useGetMovies() {
       }
 
       if (searchPath === 'person') {
-        API.getMovies(query, page, searchPath).then(response => {
+        API.getMovies(query, page, searchPath, sorter).then(response => {
           if (response === null || response.results.length === 0) {
             setError(true);
             setActors([]);
@@ -34,7 +35,7 @@ function useGetMovies() {
           setTotalResults(response.total_results);
         });
       } else {
-        API.getMovies(query, page, searchPath).then(response => {
+        API.getMovies(query, page, searchPath, sorter).then(response => {
           if (response === null || response.results.length === 0) {
             setError(true);
             setMovies([]);
@@ -59,7 +60,7 @@ function useGetMovies() {
           setTotalResults(response.total_results);
         });
       }
-    }, [query, page, searchPath, location.pathname]);
+    }, [query, page, searchPath, sorter, location.pathname]);
   } catch (error) {
     setError(true);
   }

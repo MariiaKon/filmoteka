@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { Btn } from 'components/button/button.styled';
 import { Field } from 'components/input/input.styled';
 import { Container } from 'components/header/header.styled';
+import { ReactComponent as ArrowUp } from 'assets/icons/arrow_up.svg';
+import { ReactComponent as SortSvg } from 'assets/icons/sort.svg';
+import { ReactComponent as FilterSvg } from 'assets/icons/filter.svg';
 
 export const Form = styled.form`
   grid-area: 2 / 1 / 3 / 3;
@@ -11,9 +14,13 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   align-items: center;
-  color: ${varsCss.primaryColor};
+  color: ${props =>
+    props.searchpath === 'person'
+      ? varsCss.textSecondary
+      : varsCss.primaryColor};
   cursor: pointer;
 
   @media screen and (min-width: ${varsCss.tablet}px) {
@@ -82,5 +89,49 @@ export const SearchPathBox = styled(Container)`
 
   @media screen and (min-width: ${varsCss.desktop}px) {
     justify-content: flex-start;
+  }
+`;
+
+export const ArrowIcon = styled(ArrowUp)`
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  rotate: ${props => props.deg};
+  transition: ${varsCss.transition};
+  display: none;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    display: block;
+  }
+
+  & path {
+    stroke-width: 5;
+    stroke: ${props => props.searchpath === 'person' && varsCss.textSecondary};
+  }
+`;
+
+export const SortIcon = styled(SortSvg)`
+  display: block;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    display: none;
+  }
+`;
+
+export const FilterIcon = styled(FilterSvg)`
+  display: block;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    display: none;
+  }
+`;
+
+export const IconDescr = styled.span`
+  display: none;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    display: inline-block;
+    font-size: inherit;
+    line-height: inherit;
   }
 `;

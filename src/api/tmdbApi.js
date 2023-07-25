@@ -6,7 +6,7 @@ export const poster_size = '/w342';
 export const poster_size_modal = '/w500';
 export const profile_size = '/w185';
 
-const API_KEY = '219747bddc830c6768a55001e81d80ed';
+const API_KEY = '9ca090fc1e98f36e77a27d3ffab82b43';
 
 const options = {
   params: {
@@ -23,9 +23,18 @@ export const getGenres = async () => {
   return response;
 };
 
-export const getMovies = async (query, page, searchPath) => {
-  options.params.page = page;
-  options.params.query = query;
+export const getMovies = async (query, page, searchPath, sorter) => {
+  options.params = {
+    ...options.params,
+    page,
+    query,
+    ...sorter,
+  };
+
+  if (sorter.sort_by !== '' && searchPath !== 'person') {
+    const response = await axios.get(`discover/${searchPath}`, options);
+    return response.data;
+  }
 
   if (query === '') {
     const response = await axios.get(`trending/${searchPath}/day`, options);
