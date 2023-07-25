@@ -8,14 +8,14 @@ import { LogoTitle, Navlink } from './logo.styled';
 function Logo() {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handlerClick = () => {
     dispatch(setQuery(''));
     dispatch(setPage(1));
     dispatch(setSearchPath('movie'));
   };
 
   return (
-    <Navlink to="/" onClick={handleClick}>
+    <Navlink to="/" onClick={handlerClick}>
       <LogoSvg />
       <LogoTitle>Filmoteka</LogoTitle>
     </Navlink>

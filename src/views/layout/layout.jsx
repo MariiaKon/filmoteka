@@ -17,7 +17,7 @@ function Layout() {
   useSetQueryStr();
   useScrollUp(setShowUp);
 
-  const onUpClick = () => {
+  const handlerClick = () => {
     window.scrollTo(0, 0);
   };
 
@@ -50,7 +50,7 @@ function Layout() {
         {showUp && (
           <Button
             type="button"
-            onClick={onUpClick}
+            onClick={handlerClick}
             className={'up'}
             children={<ArrowUp />}
           />

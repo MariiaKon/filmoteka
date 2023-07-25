@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from 'context/authContext';
 import useGetReviews from 'hooks/useGetReviews';
-import { base_url, poster_size_modal } from 'api/tmdbApi';
+import { base_url, poster_size_m, poster_size_l } from 'api/tmdbApi';
 import {
   addToWatchedList,
   removeFromWatchedList,
@@ -53,7 +53,7 @@ function MovieDetails({
     setQueue(inQueue);
   }, [inWatched, inQueue]);
 
-  const onClickHandler = e => {
+  const handlerClick = e => {
     switch (e.target.id) {
       case 'watched':
         setWatched(prevState => !prevState);
@@ -78,14 +78,26 @@ function MovieDetails({
     <>
       {movie && (
         <>
-          <MoviePoster
-            src={
-              movie.poster_path
-                ? `${base_url}${poster_size_modal}${movie.poster_path}`
-                : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
-            }
-            alt={movie.title ? movie.title : movie.name}
-          />
+          {movie.poster_path ? (
+            <picture>
+              <source
+                srcSet={`${base_url}${poster_size_m}${movie.poster_path}, ${base_url}${poster_size_l}${movie.poster_path} 2x`}
+                type="image/jpg"
+              />
+              <MoviePoster
+                src={`${base_url}${poster_size_m}${movie.poster_path}`}
+                alt={movie.title ? movie.title : movie.name}
+                loading="lazy"
+              />
+            </picture>
+          ) : (
+            <MoviePoster
+              src={`${process.env.PUBLIC_URL + '/no_poster.webp'}`}
+              alt={movie.title ? movie.title : movie.name}
+              loading="lazy"
+            />
+          )}
+
           {trailerSrc ? (
             <>
               <TrailerFlag>Trailer</TrailerFlag>
@@ -135,7 +147,7 @@ function MovieDetails({
                   <Button
                     id="watched"
                     type="button"
-                    onClick={onClickHandler}
+                    onClick={handlerClick}
                     children={!watched ? ['Add to ', 'watched'] : 'watched'}
                     className={watched && 'active'}
                   />
@@ -144,7 +156,7 @@ function MovieDetails({
                   <Button
                     id="queue"
                     type="button"
-                    onClick={onClickHandler}
+                    onClick={handlerClick}
                     children={!queue ? ['Add to ', 'queue'] : 'queue'}
                     className={queue && 'active'}
                   />

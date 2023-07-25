@@ -10,13 +10,13 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
   const [video, setVideo] = useState(false);
   const trailerSrc = useGetTrailer(movie?.id);
 
-  const closeModalHandler = () => {
+  const handlerCloseModal = () => {
     document.body.classList.remove('isModalOpen');
     onModalClose();
     setVideo(false);
   };
 
-  useModalClose(closeModalHandler);
+  useModalClose(handlerCloseModal);
 
   return (
     <>
@@ -25,7 +25,7 @@ function Modal({ movie, isOpen, onModalClose, inWatched, inQueue }) {
           <ModalFrame video={video}>
             <CloseBtn
               type="button"
-              onClick={closeModalHandler}
+              onClick={handlerCloseModal}
               children={<CrossSvg />}
             />
 

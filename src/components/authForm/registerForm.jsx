@@ -32,7 +32,7 @@ function RegisterForm() {
     setIsPasswordVisible(prev => !prev);
   };
 
-  const handleChange = e => {
+  const handlerOnChange = e => {
     if (e.target.name === 'confirmPassword') {
       setConfirmPassword(e.target.value);
     }
@@ -43,7 +43,7 @@ function RegisterForm() {
     });
   };
 
-  const handleSubmit = async e => {
+  const handlerSubmit = async e => {
     e.preventDefault();
 
     try {
@@ -69,7 +69,7 @@ function RegisterForm() {
           Log In <EnterSvg />
         </AltEnterLink>
       </AltEnterMsg>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handlerSubmit}>
         Register
         <Label>
           Name
@@ -79,7 +79,7 @@ function RegisterForm() {
             placeholder="Enter your name"
             autoComplete="on"
             required={true}
-            onChange={handleChange}
+            onChange={handlerOnChange}
             value={userCredentials.displayName}
           />
         </Label>
@@ -91,7 +91,7 @@ function RegisterForm() {
             placeholder="moviewatcher@mail.com"
             autoComplete="on"
             required={true}
-            onChange={handleChange}
+            onChange={handlerOnChange}
             value={userCredentials.email}
           />
         </Label>
@@ -103,7 +103,7 @@ function RegisterForm() {
             placeholder="Enter at least 6 carachters"
             autoComplete="on"
             required={true}
-            onChange={handleChange}
+            onChange={handlerOnChange}
             value={userCredentials.password}
           />
           <EyeBtn
@@ -119,7 +119,7 @@ function RegisterForm() {
             name="confirmPassword"
             placeholder="Repeat your password"
             required={true}
-            onChange={handleChange}
+            onChange={handlerOnChange}
             value={confirmPassword}
           />
           <EyeBtn

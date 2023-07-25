@@ -23,11 +23,21 @@ export const HeaderSection = styled.header`
 
   @media screen and (min-width: ${varsCss.tablet}px) {
     padding: 45px 0 60px;
-    background-image: url(${props => (props.location ? l_tab : h_tab)});
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      url(${props => (props.location ? l_tab : h_tab)});
   }
 
   @media screen and (min-width: ${varsCss.desktop}px) {
-    background-image: url(${props => (props.location ? l_desk : h_desk)});
+    background-image: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      url(${props => (props.location ? l_desk : h_desk)});
   }
 `;
 

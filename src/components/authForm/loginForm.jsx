@@ -27,14 +27,14 @@ function LoginForm() {
     setIsPasswordVisible(prev => !prev);
   };
 
-  const handleChange = e => {
+  const handlerChange = e => {
     setUserCredentials({
       ...userCredentials,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async e => {
+  const handlerSubmit = async e => {
     e.preventDefault();
 
     try {
@@ -58,7 +58,7 @@ function LoginForm() {
           Sign up <EnterSvg />
         </AltEnterLink>
       </AltEnterMsg>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handlerSubmit}>
         Login
         <Label>
           Email
@@ -67,7 +67,7 @@ function LoginForm() {
             name="email"
             placeholder="Enter email"
             required={true}
-            onChange={handleChange}
+            onChange={handlerChange}
             value={userCredentials.email}
           />
         </Label>
@@ -79,7 +79,7 @@ function LoginForm() {
             placeholder="Enter password"
             autoComplete="on"
             required={true}
-            onChange={handleChange}
+            onChange={handlerChange}
             value={userCredentials.password}
           />
           <EyeBtn

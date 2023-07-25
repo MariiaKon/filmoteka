@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import Portal from '@mui/base/Portal';
-import { base_url, poster_size } from 'api/tmdbApi';
+import { base_url, poster_size_s, poster_size_m } from 'api/tmdbApi';
 import Genres from 'components/genres/genres';
 import Rating from 'components/rating/rating';
 import Modal from 'components/modal/modal';
@@ -32,15 +32,26 @@ function MovieItem({ movie }) {
     <>
       {movie && (
         <Movie onClick={openModal}>
-          <Poster
-            src={
-              movie.poster_path
-                ? `${base_url}${poster_size}${movie.poster_path}`
-                : `${process.env.PUBLIC_URL + '/no_poster.webp'}`
-            }
-            alt={movie.title ? movie.title : movie.name}
-            loading="lazy"
-          />
+          {movie.poster_path ? (
+            <picture>
+              <source
+                srcSet={`${base_url}${poster_size_s}${movie.poster_path}, ${base_url}${poster_size_m}${movie.poster_path} 2x`}
+                type="image/jpg"
+              />
+              <Poster
+                src={`${base_url}${poster_size_s}${movie.poster_path}`}
+                alt={movie.title ? movie.title : movie.name}
+                loading="lazy"
+              />
+            </picture>
+          ) : (
+            <Poster
+              src={`${process.env.PUBLIC_URL + '/no_poster.webp'}`}
+              alt={movie.title ? movie.title : movie.name}
+              loading="lazy"
+            />
+          )}
+
           <Title>{movie.title ? movie.title : movie.name}</Title>
           <Info>
             {movie.genre_ids && <Genres ids={movie.genre_ids} isOpen={false} />}

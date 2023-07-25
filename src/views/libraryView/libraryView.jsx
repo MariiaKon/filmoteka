@@ -14,7 +14,7 @@ function LibraryView({ movies }) {
       ? movies.slice(startIdx, endIdx)
       : movies.slice(startIdx - perPage, startIdx);
 
-  const handleClick = pageIdx => {
+  const handlerClick = pageIdx => {
     const newStart = (pageIdx * perPage) % movies.length;
     setStartIdx(newStart);
   };
@@ -22,7 +22,7 @@ function LibraryView({ movies }) {
   return (
     <>
       {movies.length === 0 ? <EmptyList /> : <List items={moviesToShow} />}
-      <Pages totalResults={movies.length} perPage={perPage} cb={handleClick} />
+      <Pages totalResults={movies.length} perPage={perPage} cb={handlerClick} />
     </>
   );
 }
