@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { lazy, Suspense } from 'react';
+import { AuthProvider } from 'context/authContext';
 import useGetGenres from 'hooks/useGetGenres';
 import Loader from 'components/loader/loader';
-import { AuthProvider } from 'context/authContext';
+import PrivateRoute from 'components/PrivateRoute.js';
+import PublicRoute from 'components/PublicRoute.js';
 const Layout = lazy(() => import('views/layout/layout'));
 const AuthView = lazy(() => import('views/authView/authView'));
 const HomeView = lazy(() => import('views/homeView/homeView'));
@@ -22,7 +24,9 @@ function App() {
             path="/"
             element={
               <Suspense fallback={<Loader />}>
-                <Layout />
+                <PublicRoute>
+                  <Layout />
+                </PublicRoute>
               </Suspense>
             }
           >
@@ -31,7 +35,9 @@ function App() {
               path="/"
               element={
                 <Suspense fallback={<Loader />}>
-                  <HomeView />
+                  <PublicRoute>
+                    <HomeView />
+                  </PublicRoute>
                 </Suspense>
               }
             />
@@ -39,7 +45,9 @@ function App() {
               path="auth/*"
               element={
                 <Suspense fallback={<Loader />}>
-                  <AuthView />
+                  <PublicRoute restricted>
+                    <AuthView />
+                  </PublicRoute>
                 </Suspense>
               }
             />
@@ -47,7 +55,9 @@ function App() {
               path="library/watched"
               element={
                 <Suspense fallback={<Loader />}>
-                  <LibraryView movies={watchedList} />
+                  <PrivateRoute>
+                    <LibraryView movies={watchedList} />
+                  </PrivateRoute>
                 </Suspense>
               }
             />
@@ -55,7 +65,9 @@ function App() {
               path="library/queue"
               element={
                 <Suspense fallback={<Loader />}>
-                  <LibraryView movies={queueList} />
+                  <PrivateRoute>
+                    <LibraryView movies={queueList} />
+                  </PrivateRoute>
                 </Suspense>
               }
             />
