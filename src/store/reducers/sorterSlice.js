@@ -5,8 +5,12 @@ export const sorterSlice = createSlice({
   initialState: { sort_by: '', with_genres: '' },
   reducers: {
     setSorter: (state, { payload }) => {
-      state.sort_by = payload.sort_by;
-      state.with_genres = payload.with_genres;
+      if (payload.sort_by || payload.sort_by === '') {
+        console.log(payload);
+        return state = {...state, sort_by: payload.sort_by}
+      } else if (payload.with_genres) { 
+        return state = {...state, with_genres: payload.with_genres}
+      } 
     },
   },
 });
