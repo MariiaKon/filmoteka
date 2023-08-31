@@ -1,27 +1,37 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Radio } from 'components/searchbar/searchbar.styled';
-import { SearchOptionsBox, OptionsList, Label, SubmitBtn } from './searchOptions.styled';
+import {
+  SearchOptionsBox,
+  OptionsList,
+  Label,
+  SubmitBtn,
+} from './searchOptions.styled';
 import { setSorter } from 'store/reducers/sorterSlice';
 
 function Filter({ onFilterHide }) {
   const dispatch = useDispatch();
-  const [genresFilter, setGenresFilter] = useState([]);
+  const filteredGenresPrev = useSelector(state => state.sorter.with_genres);
+  const [filteredGenres, setFilteredGenres] = useState(filteredGenresPrev);
   const genres = useSelector(state => state.genresList.genres);
 
   const handlerClick = e => {
+    if (filteredGenresPrev.length !== 0) {
+      e.target.checked = filteredGenresPrev.includes(e.target.value);
+    }
+
     if (e.target.checked) {
-      setGenresFilter(prev => [...genresFilter, e.target.value]);
+      setFilteredGenres(prev => `${filteredGenres}, ${e.target.value}`);
     } else if (!e.target.checked) {
-      setGenresFilter(prev =>
-        [...genresFilter].filter(g => g !== e.target.value)
+      setFilteredGenres(prev =>
+        [...filteredGenres].filter(g => g !== e.target.value)
       );
     }
   };
 
   const handlerSubmit = e => {
+    dispatch(setSorter({ [e.target.name]: `${filteredGenres.join(', ')}` }));
     onFilterHide(false);
-    dispatch(setSorter({ [e.target.name]: `${genresFilter.join(', ')}` }));
   };
 
   return (
