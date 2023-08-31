@@ -12,11 +12,19 @@ import {
   SubmitBtn,
   SearchPathBox,
   CustomRadio,
+  ArrowIcon,
+  SortIcon,
+  FilterIcon,
+  IconDescr,
 } from './searchbar.styled';
+import Sorter from 'components/searchOptions/sorter';
+import Filter from 'components/searchOptions/filter';
 
 function Searchbar() {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
+  const [showSortList, setShowSortList] = useState(false);
+  const [showFilterList, setShowFilterList] = useState(false);
   const searchPath = useSelector(store => store.searchPath);
   const query = useSelector(store => store.query);
 
@@ -24,21 +32,44 @@ function Searchbar() {
     setValue(query);
   }, [query]);
 
-  const handleSubmit = e => {
+  const handlerSubmit = e => {
     e.preventDefault();
 
     dispatch(setQuery(e.target.elements.searchbar.value.trim()));
     dispatch(setPage(1));
   };
 
-  const onChange = e => {
-    dispatch(setSearchPath(e.target.value));
-    dispatch(setPage(1));
+  const handlerOnChange = e => {
     e.target.checked = true;
+
+    switch (e.target.value) {
+      case 'sort':
+        setShowSortList(prev => !prev);
+
+        if (showFilterList) {
+          setShowFilterList(prev => !prev);
+        }
+
+        break;
+
+      case 'filter':
+        setShowFilterList(prev => !prev);
+
+        if (showSortList) {
+          setShowSortList(prev => !prev);
+        }
+
+        break;
+
+      default:
+        dispatch(setSearchPath(e.target.value));
+        dispatch(setPage(1));
+        break;
+    }
   };
 
   return (
-    <Form action="" onSubmit={handleSubmit}>
+    <Form action="" onSubmit={handlerSubmit}>
       <Input
         type="text"
         name="searchbar"
@@ -50,13 +81,53 @@ function Searchbar() {
         }}
       />
       <SearchPathBox>
+        <Label searchpath={searchPath}>
+          <FilterIcon />
+          <IconDescr>Filter</IconDescr>
+          <Radio
+            type="radio"
+            value="filter"
+            name="filter"
+            onClick={handlerOnChange}
+            checked={showFilterList}
+            readOnly={true}
+            disabled={searchPath === 'person'}
+          />
+          <ArrowIcon
+            searchpath={searchPath}
+            deg={showFilterList ? '360deg' : '180deg'}
+          />
+          {showFilterList && searchPath !== 'person' && (
+            <Filter onFilterHide={setShowFilterList} />
+          )}
+        </Label>
+        <Label searchpath={searchPath}>
+          <SortIcon />
+          <IconDescr>Sort</IconDescr>
+          <Radio
+            type="radio"
+            value="sort"
+            name="sort"
+            onClick={handlerOnChange}
+            checked={showSortList}
+            readOnly={true}
+            disabled={searchPath === 'person'}
+          />
+          <ArrowIcon
+            searchpath={searchPath}
+            deg={showSortList ? '360deg' : '180deg'}
+          />
+          {showSortList && searchPath !== 'person' && (
+            <Sorter onSorterHide={setShowSortList} />
+          )}
+        </Label>
         <Label>
           Movies
           <Radio
             type="radio"
             value="movie"
             name="searchGroup"
-            onChange={onChange}
+            onChange={handlerOnChange}
             checked={searchPath === 'movie'}
           />
           <CustomRadio />
@@ -67,7 +138,7 @@ function Searchbar() {
             type="radio"
             value="tv"
             name="searchGroup"
-            onChange={onChange}
+            onChange={handlerOnChange}
             checked={searchPath === 'tv'}
           />
           <CustomRadio />
@@ -78,7 +149,7 @@ function Searchbar() {
             type="radio"
             value="person"
             name="searchGroup"
-            onChange={onChange}
+            onChange={handlerOnChange}
             checked={searchPath === 'person'}
           />
           <CustomRadio />
