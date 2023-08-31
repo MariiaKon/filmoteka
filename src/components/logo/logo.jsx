@@ -15,7 +15,7 @@ function Logo() {
   };
 
   return (
-    <Navlink to="/" onClick={handlerClick}>
+    <Navlink to="/?movie&trendings&page=1" onClick={handlerClick}>
       <LogoSvg />
       <LogoTitle>Filmoteka</LogoTitle>
     </Navlink>

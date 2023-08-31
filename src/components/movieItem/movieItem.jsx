@@ -11,6 +11,7 @@ import { Movie, Poster, Title, Info, Release } from './movieItem.styled';
 function MovieItem({ movie }) {
   const watchedList = useSelector(state => state.libraryLists.watchedList);
   const queueList = useSelector(state => state.libraryLists.queueList);
+  const sorter = useSelector(state => state.sorter.sort_by);
   const inWatched = watchedList.some(mv => mv.id === movie.id);
   const inQueue = queueList.some(mv => mv.id === movie.id);
   const [movieInfo, setMovieInfo] = useState(null);
@@ -56,9 +57,8 @@ function MovieItem({ movie }) {
           <Info>
             {movie.genre_ids && <Genres ids={movie.genre_ids} isOpen={false} />}
             {movie.release_date && <Release>{movie.release_date}</Release>}
-            {location.pathname.includes('library') ? (
-              <Rating rating={movie.vote_average} />
-            ) : !location.search.includes('trendings') ? (
+            {!location.search.includes('trendings') ||
+            (location.search.includes('trendings') && sorter !== '') ? (
               <Rating rating={movie.vote_average} />
             ) : (
               false
