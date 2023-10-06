@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, /*useEffect*/ } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Radio } from 'components/searchbar/searchbar.styled';
 import {
@@ -12,25 +12,38 @@ import { setSorter } from 'store/reducers/sorterSlice';
 function Filter({ onFilterHide }) {
   const dispatch = useDispatch();
   const filteredGenresPrev = useSelector(state => state.sorter.with_genres);
-  const [filteredGenres, setFilteredGenres] = useState(filteredGenresPrev);
+  const [filteredGenres, setFilteredGenres] = useState(filteredGenresPrev.split(',').filter(g => g !== ''));
   const genres = useSelector(state => state.genresList.genres);
 
   const handlerClick = e => {
-    if (filteredGenresPrev.length !== 0) {
-      e.target.checked = filteredGenresPrev.includes(e.target.value);
+    if (![...filteredGenres].includes(e.target.value)) {
+      setFilteredGenres(prev => [...filteredGenres, e.target.value]);
+      return;
     }
 
-    if (e.target.checked) {
-      setFilteredGenres(prev => `${filteredGenres}, ${e.target.value}`);
-    } else if (!e.target.checked) {
-      setFilteredGenres(prev =>
-        [...filteredGenres].filter(g => g !== e.target.value)
-      );
-    }
+    setFilteredGenres(prev => [...filteredGenres].filter(g => g !== e.target.value));
+    return;
+
+    // if (filteredGenres.length !== 0) {
+    //   e.target.checked = filteredGenres.includes(e.target.value);
+    // }
+
+    // if (e.target.checked) {
+    //   setFilteredGenres(prev => filteredGenres ? `${filteredGenres}, ${e.target.value}` : `${e.target.value}`);
+    // } else if (!e.target.checked) {
+    //   setFilteredGenres(prev =>
+    //     [...filteredGenres].filter(g => g !== e.target.value)
+    //   );
+    // }
   };
 
-  const handlerSubmit = e => {
-    dispatch(setSorter({ [e.target.name]: `${filteredGenres.join(', ')}` }));
+  // useEffect(() => {
+  //   console.log('onclick', filteredGenres);
+  // }, [filteredGenres])
+
+  const handlerSubmit = (e) => {
+    console.log('submit', { [e.target.name]: filteredGenres.toString() });
+    dispatch(setSorter({ [e.target.name]: filteredGenres.toString() }));
     onFilterHide(false);
   };
 
@@ -48,8 +61,9 @@ function Filter({ onFilterHide }) {
                 <Label key={genre.id}>
                   <Radio
                     type="checkbox"
-                    onClick={handlerClick}
+                    onChange={handlerClick}
                     value={genre.name.toLowerCase()}
+                    checked={[...filteredGenres].includes(genre.name)}
                   />
                   {genre.name}
                 </Label>
