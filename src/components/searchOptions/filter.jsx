@@ -1,4 +1,4 @@
-import { useState, /*useEffect*/ } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Radio } from 'components/searchbar/searchbar.styled';
 import {
@@ -15,36 +15,24 @@ function Filter({ onFilterHide }) {
   const [filteredGenres, setFilteredGenres] = useState(filteredGenresPrev.split(',').filter(g => g !== ''));
   const genres = useSelector(state => state.genresList.genres);
 
-  const handlerClick = e => {
-    if (![...filteredGenres].includes(e.target.value)) {
+  const handlerOnChange = e => {
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].name === e.target.value) {
+        genres[i].checked = !genres[i].checked;
+      }
+    }
+
+    if (!filteredGenres.includes(e.target.value)) {
       setFilteredGenres(prev => [...filteredGenres, e.target.value]);
       return;
     }
 
     setFilteredGenres(prev => [...filteredGenres].filter(g => g !== e.target.value));
     return;
-
-    // if (filteredGenres.length !== 0) {
-    //   e.target.checked = filteredGenres.includes(e.target.value);
-    // }
-
-    // if (e.target.checked) {
-    //   setFilteredGenres(prev => filteredGenres ? `${filteredGenres}, ${e.target.value}` : `${e.target.value}`);
-    // } else if (!e.target.checked) {
-    //   setFilteredGenres(prev =>
-    //     [...filteredGenres].filter(g => g !== e.target.value)
-    //   );
-    // }
   };
 
-  // useEffect(() => {
-  //   console.log('onclick', filteredGenres);
-  // }, [filteredGenres])
-
   const handlerSubmit = (e) => {
-    console.log('submit', { [e.target.name]: filteredGenres.toString() });
-    dispatch(setSorter({ [e.target.name]: filteredGenres.toString() }));
-    onFilterHide(false);
+    dispatch(setSorter({ [e.target.name]: filteredGenres }));
   };
 
   return (
@@ -61,9 +49,9 @@ function Filter({ onFilterHide }) {
                 <Label key={genre.id}>
                   <Radio
                     type="checkbox"
-                    onChange={handlerClick}
-                    value={genre.name.toLowerCase()}
-                    checked={[...filteredGenres].includes(genre.name)}
+                    onChange={handlerOnChange}
+                    value={genre.name}
+                    checked={genre.checked}
                   />
                   {genre.name}
                 </Label>
