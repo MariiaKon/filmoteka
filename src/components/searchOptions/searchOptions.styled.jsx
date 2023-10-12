@@ -27,6 +27,7 @@ export const Label = styled.label`
   padding: 2px 4px;
   color: ${varsCss.textColor};
   font-size: ${varsCss.fontSizePrimary};
+  text-transform: capitalize;
   line-height: 16px;
   cursor: pointer;
 

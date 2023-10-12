@@ -7,6 +7,7 @@ export const GenreList = styled.ul`
 
 export const GenreItem = styled.li`
   line-height: 16px;
+  text-transform: capitalize;
 
   &::after {
     content: ',';
