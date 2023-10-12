@@ -6,6 +6,7 @@ import { Radio } from 'components/searchbar/searchbar.styled';
 function Sorter({ onSorterHide }) {
   const dispatch = useDispatch();
   const sorter = useSelector(store => store.sorter.sort_by);
+  const sorterValues = [{name: 'default', value: ''}, {name: 'popularity desc.', value: 'popularity.desc'}, {name: 'popularity asc.', value: 'popularity.asc'}, {name: 'vote average desc.', value: 'vote_average.desc'}, {name: 'vote average asc.', value: 'vote_average.asc'}];
 
   const handlerOnChange = e => {
     dispatch(setSorter({ [e.target.name]: e.target.value }));
@@ -15,57 +16,21 @@ function Sorter({ onSorterHide }) {
   return (
     <SearchOptionsBox>
       Sort by:
-      <OptionsList>
-        <Label>
-          default
-          <Radio
-            type="radio"
-            name="sort_by"
-            value=""
-            onChange={handlerOnChange}
-            checked={sorter === ''}
-          />
-        </Label>
-        <Label>
-          popularity desc.
-          <Radio
-            type="radio"
-            name="sort_by"
-            value="popularity.desc"
-            onChange={handlerOnChange}
-            checked={sorter === 'popularity.desc'}
-          />
-        </Label>
-        <Label>
-          popularity asc.
-          <Radio
-            type="radio"
-            name="sort_by"
-            value="popularity.asc"
-            onChange={handlerOnChange}
-            checked={sorter === 'popularity.asc'}
-          />
-        </Label>
-        <Label>
-          vote average desc.
-          <Radio
-            type="radio"
-            name="sort_by"
-            value="vote_average.desc"
-            onChange={handlerOnChange}
-            checked={sorter === 'vote_average.desc'}
-          />
-        </Label>
-        <Label>
-          vote average asc.
-          <Radio
-            type="radio"
-            name="sort_by"
-            value="vote_average.asc"
-            onChange={handlerOnChange}
-            checked={sorter === 'vote_average.asc'}
-          />
-        </Label>
+      <OptionsList> {
+        sorterValues.map(({name, value}) => {
+          return (
+            <Label key={name}>
+              {name}
+              <Radio
+                type="radio"
+                name="sort_by"
+                value={value}
+                onChange={handlerOnChange}
+                checked={sorter === value}
+              />
+            </Label>)
+          })
+        }
       </OptionsList>
     </SearchOptionsBox>
   );
