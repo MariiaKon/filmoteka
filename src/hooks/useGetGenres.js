@@ -20,6 +20,8 @@ function useGetGenres() {
               return acc;
             }
           }
+
+          current = {...current, name: current.name.toLowerCase(), checked: false}
           acc.push(current);
           return acc;
         }, []);
