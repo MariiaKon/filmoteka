@@ -32,7 +32,7 @@ export const getMovies = async (query, page, searchPath, sorter) => {
     ...sorter,
   };
 
-  if (sorter.sort_by !== '' && searchPath !== 'person') {
+  if ((sorter.sort_by !== '' && searchPath !== 'person') || (sorter.with_genres !== '' && searchPath !== 'person')) {
     const response = await axios.get(`discover/${searchPath}`, options);
     return response.data;
   }
