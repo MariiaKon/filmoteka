@@ -47,11 +47,19 @@ export const getMovies = async (query, page, searchPath, sorter) => {
 };
 
 export const getTrailers = async (id, searchPath) => {
-  const response = await axios.get(`${searchPath}/${id}/videos`, options);
-  return response.data;
+  try {
+    const response = await axios.get(`${searchPath}/${id}/videos`, options);
+    return response.data;
+  } catch (error) {
+    return error.response
+  }
 };
 
 export const getReviews = async (id, searchPath) => {
-  const response = await axios.get(`${searchPath}/${id}/reviews`, options);
-  return response.data;
+  try {
+    const response = await axios.get(`${searchPath}/${id}/reviews`, options);
+    return response.data;
+  } catch (error) {
+    return error.response
+  }
 };

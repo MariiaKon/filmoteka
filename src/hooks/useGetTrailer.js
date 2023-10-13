@@ -16,6 +16,10 @@ function useGetTrailer(id) {
         .then(response => {
           let trailer = null;
 
+          if (response?.status && response.status !== 200) {
+            return;
+          }
+
           if (response.results.length >= 1) {
             trailer =
               response.results.find(

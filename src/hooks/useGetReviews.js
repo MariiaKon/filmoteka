@@ -18,6 +18,11 @@ function useGetReviews(id, showReviews) {
 
       API.getReviews(id, searchPath)
         .then(response => {
+          if (response?.status && response.status !== 200) {
+            setLoading(false);
+            return;
+          }
+
           setReviews([...response.results]);
           setTotalResults(response.total_results);
         })
