@@ -4,33 +4,58 @@ import styled from 'styled-components';
 
 export const SearchOptionsBox = styled.div`
   position: absolute;
-  top: 26px;
+  top: 186px;
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   flex-direction: column;
   width: max-content;
   background: ${varsCss.primaryColor};
-  color: ${varsCss.textColor};
   border-radius: 2px;
   box-shadow: 0 2px 4px 0 ${varsCss.textSecondary};
   padding: 4px;
-  z-index: 100;
+
+  @media screen and (min-width: ${varsCss.desktop}px) {
+    transform: translate(-90%);
+  }
+`;
+
+export const Title = styled.h6`
+  color: ${varsCss.textColor};
+  font-size: ${varsCss.fontSizePrimary};
+  text-transform: uppercase;
+  padding: 4px;
 `;
 
 export const OptionsList = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 200px;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    grid-template-columns: repeat(2, 150px);
+  }
+
+  @media screen and (min-width: ${varsCss.desktop}px) {
+    grid-template-columns: repeat(3, 160px);
+  }
 `;
 
 export const Label = styled.label`
   display: flex;
   align-items: center;
-  padding: 2px 4px;
+  padding: 2px 10px;
   color: ${varsCss.textColor};
   font-size: ${varsCss.fontSizePrimary};
   text-transform: capitalize;
   line-height: 16px;
+  border-top: 1px solid transparent;
   cursor: pointer;
 
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    font-size: ${varsCss.fontSizeSecondary};
+    border-right: 1px solid transparent;
+  }
+  
   :hover {
     color: ${varsCss.primaryColor};
     background: ${varsCss.textSecondary};
@@ -39,13 +64,23 @@ export const Label = styled.label`
   :has(input:checked) {
     color: ${varsCss.primaryColor};
     background: ${varsCss.accentColor};
+    border-top: 1px solid ${varsCss.primaryColor};
+
+    @media screen and (min-width: ${varsCss.tablet}px) {
+      border-right: 1px solid ${varsCss.primaryColor};
+    }
   }
 `;
 
 export const SubmitBtn = styled(Button)`
+  align-self: center;
   margin-top: 16px;
   width: 100%;
   height: 40px;
+
+  @media screen and (min-width: ${varsCss.tablet}px) {
+    width: 50%;
+  }
 
   :hover,
   :focus {
