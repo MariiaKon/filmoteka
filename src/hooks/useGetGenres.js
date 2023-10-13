@@ -2,6 +2,7 @@ import * as API from 'api/tmdbApi';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenres } from 'store/reducers/genresSlice';
+import { setSorter } from 'store/reducers/sorterSlice'
 
 function useGetGenres() {
   const dispatch = useDispatch();
@@ -10,6 +11,8 @@ function useGetGenres() {
   try {
     useEffect(() => {
       if (genres.length !== 0) {
+        const with_genresArr = [...genres].filter(g => g.checked === true).map(g => {return g.name});
+        dispatch(setSorter({ with_genres: with_genresArr.toString() }))
         return;
       }
 
@@ -28,7 +31,7 @@ function useGetGenres() {
 
         dispatch(setGenres(uniqueGenres));
       });
-    }, [dispatch, genres.length]);
+    }, [dispatch, genres]);
   } catch (error) {}
 }
 

@@ -6,40 +6,46 @@ import {
   SearchOptionsBox,
   OptionsList,
   Label,
-  SubmitBtn, Title
+  SubmitBtn,
+  Title,
 } from './searchOptions.styled';
-import { Overlay } from 'components/modal/modal.styled'
+import { Overlay } from 'components/modal/modal.styled';
 import { setSorter } from 'store/reducers/sorterSlice';
+import { setGenres } from 'store/reducers/genresSlice';
 
 function Filter({ onFilterHide }) {
   const dispatch = useDispatch();
-  const filteredGenresPrev = useSelector(state => state.sorter.with_genres);
-  const [filteredGenres, setFilteredGenres] = useState(filteredGenresPrev.split(',').filter(g => g !== ''));
+  const filteredGenresNamesPrev = useSelector(state => state.sorter.with_genres);
+  const [filteredGenresNames, setFilteredGenresNames] = useState(filteredGenresNamesPrev.split(',').filter(g => g !== ''));
   const genres = useSelector(state => state.genresList.genres);
+  const [filteredGenres, setFilteredGenres] = useState([...genres])
 
   const handlerOnChange = e => {
-    for (let i = 0; i < genres.length; i++) {
-      if (genres[i].name === e.target.value) {
-        genres[i].checked = !genres[i].checked;
+    for (let i = 0; i < filteredGenres.length; i++) {
+      if (filteredGenres[i].name === e.target.value) {
+        const newFilteredGenres = [...filteredGenres].filter(g => g.name !== e.target.value);
+
+        setFilteredGenres(prev => [...newFilteredGenres, {...filteredGenres[i], checked: !filteredGenres[i].checked}])
       }
     }
 
-    if (!filteredGenres.includes(e.target.value)) {
-      setFilteredGenres(prev => [...filteredGenres, e.target.value]);
+    if (!filteredGenresNames.includes(e.target.value)) {
+      setFilteredGenresNames(prev => [...filteredGenresNames, e.target.value]);
       return;
     }
 
-    setFilteredGenres(prev => [...filteredGenres].filter(g => g !== e.target.value));
+    setFilteredGenresNames(prev => [...filteredGenresNames].filter(g => g !== e.target.value));
     return;
   };
 
   const handlerSubmit = (e) => {
-    dispatch(setSorter({ [e.target.name]: filteredGenres }));
+    dispatch(setSorter({ [e.target.name]: filteredGenresNames }));
+    dispatch(setGenres(filteredGenres))
   };
 
   const handlerOnFilterHide = () => {
     onFilterHide(false)
-  }
+  };
 
   useModalClose(handlerOnFilterHide);
 
@@ -49,7 +55,7 @@ function Filter({ onFilterHide }) {
         <Title>Genres:</Title>
         <OptionsList>
           {genres &&
-            [...genres]
+            [...filteredGenres]
               .sort((a, b) => {
                 return a.name.localeCompare(b.name);
               })
