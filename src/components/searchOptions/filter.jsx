@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import useModalClose from 'hooks/useModalClose';
 import { Radio } from 'components/searchbar/searchbar.styled';
 import {
   SearchOptionsBox,
   OptionsList,
   Label,
-  SubmitBtn,
+  SubmitBtn, Title
 } from './searchOptions.styled';
+import { Overlay } from 'components/modal/modal.styled'
 import { setSorter } from 'store/reducers/sorterSlice';
 
 function Filter({ onFilterHide }) {
@@ -35,36 +37,44 @@ function Filter({ onFilterHide }) {
     dispatch(setSorter({ [e.target.name]: filteredGenres }));
   };
 
+  const handlerOnFilterHide = () => {
+    onFilterHide(false)
+  }
+
+  useModalClose(handlerOnFilterHide);
+
   return (
-    <SearchOptionsBox>
-      Genres:
-      <OptionsList>
-        {genres &&
-          [...genres]
-            .sort((a, b) => {
-              return a.name.localeCompare(b.name);
-            })
-            .map(genre => {
-              return (
-                <Label key={genre.id}>
-                  <Radio
-                    type="checkbox"
-                    onChange={handlerOnChange}
-                    value={genre.name}
-                    checked={genre.checked}
-                  />
-                  {genre.name}
-                </Label>
-              );
-            })}
-      </OptionsList>
-      <SubmitBtn
-        type="button"
-        children="Filter"
-        name="with_genres"
-        onClick={handlerSubmit}
-      />
-    </SearchOptionsBox>
+    <Overlay>
+      <SearchOptionsBox>
+        <Title>Genres:</Title>
+        <OptionsList>
+          {genres &&
+            [...genres]
+              .sort((a, b) => {
+                return a.name.localeCompare(b.name);
+              })
+              .map(genre => {
+                return (
+                  <Label key={genre.id}>
+                    <Radio
+                      type="checkbox"
+                      onChange={handlerOnChange}
+                      value={genre.name}
+                      checked={genre.checked}
+                    />
+                    {genre.name}
+                  </Label>
+                );
+              })}
+        </OptionsList>
+        <SubmitBtn
+          type="button"
+          children="Filter"
+          name="with_genres"
+          onClick={handlerSubmit}
+        />
+      </SearchOptionsBox>
+    </Overlay>
   );
 }
 

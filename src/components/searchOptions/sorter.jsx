@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
+import useModalClose from 'hooks/useModalClose';
 import { setSorter } from 'store/reducers/sorterSlice';
-import { SearchOptionsBox, OptionsList, Label } from './searchOptions.styled';
+import { SearchOptionsBox, OptionsList, Label, Title } from './searchOptions.styled';
+import { Overlay } from 'components/modal/modal.styled'
 import { Radio } from 'components/searchbar/searchbar.styled';
 
 function Sorter({ onSorterHide }) {
@@ -13,26 +15,34 @@ function Sorter({ onSorterHide }) {
     onSorterHide(false);
   };
 
+  const handlerOnSorterHide = () => {
+    onSorterHide(false)
+  }
+
+  useModalClose(handlerOnSorterHide);
+
   return (
-    <SearchOptionsBox>
-      Sort by:
-      <OptionsList> {
-        sorterValues.map(({name, value}) => {
-          return (
-            <Label key={name}>
-              {name}
-              <Radio
-                type="radio"
-                name="sort_by"
-                value={value}
-                onChange={handlerOnChange}
-                checked={sorter === value}
-              />
-            </Label>)
-          })
-        }
-      </OptionsList>
-    </SearchOptionsBox>
+    <Overlay>
+      <SearchOptionsBox>
+        <Title>Sort by:</Title>
+        <OptionsList style={{gridTemplateColumns: 'max-content'}}> {
+          sorterValues.map(({name, value}) => {
+            return (
+              <Label key={name}>
+                {name}
+                <Radio
+                  type="radio"
+                  name="sort_by"
+                  value={value}
+                  onChange={handlerOnChange}
+                  checked={sorter === value}
+                />
+              </Label>)
+            })
+          }
+        </OptionsList>
+      </SearchOptionsBox>
+    </Overlay>
   );
 }
 
