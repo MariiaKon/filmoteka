@@ -1,22 +1,23 @@
 import varsCss from 'components/commonCss/varsCss';
 import { Button } from 'components/movieDetails/movieDetails.styled';
+import { ModalFrame } from 'components/modal/modal.styled';
 import styled from 'styled-components';
 
-export const SearchOptionsBox = styled.div`
+export const SearchOptionsBox = styled(ModalFrame)`
   position: absolute;
   top: 186px;
   left: 50%;
   transform: translate(-50%);
   display: flex;
   flex-direction: column;
+  gap: 10px;
   width: max-content;
-  background: ${varsCss.primaryColor};
-  border-radius: 2px;
   box-shadow: 0 2px 4px 0 ${varsCss.textSecondary};
   padding: 4px;
+  margin: 0;
 
   @media screen and (min-width: ${varsCss.desktop}px) {
-    transform: translate(-90%);
+    transform: translate(-85%);
   }
 `;
 
@@ -36,7 +37,7 @@ export const OptionsList = styled.div`
   }
 
   @media screen and (min-width: ${varsCss.desktop}px) {
-    grid-template-columns: repeat(3, 160px);
+    grid-template-columns: repeat(3, 170px);
   }
 `;
 

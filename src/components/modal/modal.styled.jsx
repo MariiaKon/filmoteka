@@ -27,6 +27,7 @@ export const ModalFrame = styled.div`
   grid-template-columns: 240px;
   grid-template-rows: repeat(2, fit-content);
   gap: 30px;
+  border-radius: 2px;
   background: ${varsCss.primaryColor};
   width: 280px;
   height: fit-content;
