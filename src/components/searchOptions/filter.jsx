@@ -18,14 +18,14 @@ function Filter({ onFilterHide }) {
   const filteredGenresNamesPrev = useSelector(state => state.sorter.with_genres);
   const [filteredGenresNames, setFilteredGenresNames] = useState(filteredGenresNamesPrev.split(',').filter(g => g !== ''));
   const genres = useSelector(state => state.genresList.genres);
-  const [filteredGenres, setFilteredGenres] = useState([...genres])
+  const [filteredGenres, setFilteredGenres] = useState([...genres]);
 
   const handlerOnChange = e => {
     for (let i = 0; i < filteredGenres.length; i++) {
       if (filteredGenres[i].name === e.target.value) {
         const newFilteredGenres = [...filteredGenres].filter(g => g.name !== e.target.value);
 
-        setFilteredGenres(prev => [...newFilteredGenres, {...filteredGenres[i], checked: !filteredGenres[i].checked}])
+        setFilteredGenres(prev => [...newFilteredGenres, {...filteredGenres[i], checked: !filteredGenres[i].checked}]);
       }
     }
 
@@ -40,11 +40,11 @@ function Filter({ onFilterHide }) {
 
   const handlerSubmit = (e) => {
     dispatch(setSorter({ [e.target.name]: filteredGenresNames }));
-    dispatch(setGenres(filteredGenres))
+    dispatch(setGenres(filteredGenres));
   };
 
   const handlerOnFilterHide = () => {
-    onFilterHide(false)
+    onFilterHide(false);
   };
 
   useModalClose(handlerOnFilterHide);
